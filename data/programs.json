@@ -1,0 +1,217 @@
+[
+  {
+    "id": "communications",
+    "label": "Communications Program",
+    "type": "fixed",
+    "skills": [
+      "Cryptography",
+      "Laser",
+      "Optic Systems",
+      "Radio: Basic",
+      "Radio: Scrambler",
+      "Radio: Satellite",
+      "T.V./Video",
+      "Read Sensory Equipment"
+    ]
+  },
+  {
+    "id": "computer",
+    "label": "Computer Program",
+    "type": "fixed",
+    "skills": [
+      "Computer Operation",
+      "Computer Programming"
+    ]
+  },
+  {
+    "id": "domestic",
+    "label": "Domestic Program",
+    "type": "choose",
+    "choose": 3,
+    "pool": [
+      "Cook",
+      "Dance",
+      "Fish",
+      "Sew",
+      "Sing"
+    ]
+  },
+  {
+    "id": "electrical",
+    "label": "Electrical Program",
+    "type": "fixed",
+    "skills": [
+      "Electrical Engineer",
+      "Surveillance Systems",
+      "Computer Repair"
+    ]
+  },
+  {
+    "id": "espionage",
+    "label": "Espionage Program",
+    "type": "choose",
+    "choose": 6,
+    "pool": [
+      "Concealment",
+      "Detect Ambush",
+      "Detect Concealment",
+      "Disguise",
+      "Escape Artist",
+      "Forgery",
+      "Impersonation",
+      "Interrogation",
+      "Land Navigation",
+      "Palming",
+      "Pick Locks",
+      "Pick Pockets",
+      "Tracking",
+      "Wilderness Survival"
+    ]
+  },
+  {
+    "id": "journalist",
+    "label": "Journalist/Investigation Program",
+    "type": "fixed",
+    "skills": [
+      "Computer Operation",
+      "Intelligence",
+      "Photography",
+      "Writing"
+    ]
+  },
+  {
+    "id": "language",
+    "label": "Language Program",
+    "type": "choose",
+    "choose": 3,
+    "pool": [
+      "Language"
+    ]
+  },
+  {
+    "id": "mechanical",
+    "label": "Mechanical Program",
+    "type": "choose-fixed",
+    "fixed": [
+      "Mechanical Engineering",
+      "Locksmith"
+    ],
+    "choose": 1,
+    "pool": [
+      "Automotive Mechanics",
+      "Aircraft Mechanics",
+      "Computer Repair"
+    ]
+  },
+  {
+    "id": "medical",
+    "label": "Medical Program",
+    "type": "fixed",
+    "skills": [
+      "Criminal Science/Forensics",
+      "Paramedic",
+      "Pathology",
+      "Medical Doctor"
+    ]
+  },
+  {
+    "id": "military",
+    "label": "Military Program",
+    "type": "fixed",
+    "skills": [
+      "Hand to Hand Basic",
+      "Demolitions",
+      "Demolitions Disposal",
+      "Pilot Tank",
+      "Read Sensory Equipment"
+    ]
+  },
+  {
+    "id": "pilot_advanced",
+    "label": "Pilot Advanced Program",
+    "type": "choose-fixed",
+    "fixed": [
+      "Navigation (Air, Land, Water)",
+      "Read Sensory Equipment",
+      "Weapon Systems"
+    ],
+    "choose": 2,
+    "pool": [
+      "Helicopter, Basic",
+      "Helicopter, Combat",
+      "Jet",
+      "Jet Fighter"
+    ]
+  },
+  {
+    "id": "physical",
+    "label": "Physical Program",
+    "type": "choose",
+    "choose": 4,
+    "pool": [
+      "Hand to Hand Basic",
+      "Hand to Hand Expert",
+      "Hand to Hand Martial Arts",
+      "Acrobatics",
+      "Archery",
+      "Athletics (general)",
+      "Body Building",
+      "Boxing",
+      "Climbing",
+      "Fencing",
+      "Gymnastics",
+      "Prowl",
+      "Running",
+      "Swimming",
+      "Swimming Advanced",
+      "Wrestling"
+    ]
+  },
+  {
+    "id": "science",
+    "label": "Science Program",
+    "type": "choose-fixed",
+    "fixed": [
+      "Computer Operation"
+    ],
+    "choose": 4,
+    "pool": [
+      "Astrophysics",
+      "Biology",
+      "Botany",
+      "Chemistry",
+      "Chemistry: Analytical",
+      "Mathematics: Basic",
+      "Mathematics: Advanced"
+    ]
+  },
+  {
+    "id": "technical",
+    "label": "Technical Program",
+    "type": "choose",
+    "choose": 3,
+    "pool": [
+      "Art",
+      "Photography",
+      "Writing",
+      "Language"
+    ]
+  },
+  {
+    "id": "wp_ancient",
+    "label": "W.P. Ancient Weapons Program",
+    "type": "choose",
+    "choose": 3,
+    "pool": [
+      "W.P. Blunt",
+      "W.P. Bow",
+      "W.P. Chain",
+      "W.P. Knife",
+      "W.P. Sword",
+      "W.P. Staff",
+      "W.P. Spear/Forked",
+      "W.P. Target",
+      "W.P. Paired Weapons"
+    ]
+  }
+]

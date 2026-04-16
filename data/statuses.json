@@ -1,0 +1,82 @@
+[
+  {
+    "id": "stunned",
+    "label": "Stunned",
+    "category": "combat"
+  },
+  {
+    "id": "knockout",
+    "label": "Knock-Out / Unconscious",
+    "category": "combat"
+  },
+  {
+    "id": "coma",
+    "label": "Coma / Near Death",
+    "category": "severe"
+  },
+  {
+    "id": "poisoned",
+    "label": "Poisoned",
+    "category": "condition"
+  },
+  {
+    "id": "drugged",
+    "label": "Drugged",
+    "category": "condition"
+  },
+  {
+    "id": "blinded",
+    "label": "Blinded",
+    "category": "condition"
+  },
+  {
+    "id": "deafened",
+    "label": "Deafened",
+    "category": "condition"
+  },
+  {
+    "id": "mute",
+    "label": "Mute",
+    "category": "condition"
+  },
+  {
+    "id": "paralyzed",
+    "label": "Paralyzed",
+    "category": "condition"
+  },
+  {
+    "id": "pain",
+    "label": "Pain",
+    "category": "condition"
+  },
+  {
+    "id": "exhausted",
+    "label": "Exhausted",
+    "category": "condition"
+  },
+  {
+    "id": "encumbered",
+    "label": "Encumbered",
+    "category": "inventory"
+  },
+  {
+    "id": "bleeding",
+    "label": "Bleeding",
+    "category": "condition"
+  },
+  {
+    "id": "prone",
+    "label": "Prone / Down",
+    "category": "combat"
+  },
+  {
+    "id": "mind_trapped",
+    "label": "Mind Trapped",
+    "category": "psionic"
+  },
+  {
+    "id": "mind_blocked",
+    "label": "Mind Blocked",
+    "category": "psionic"
+  }
+]

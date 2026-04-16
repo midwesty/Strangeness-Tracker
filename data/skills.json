@@ -1,0 +1,631 @@
+[
+  {
+    "name": "Mathematics: Basic",
+    "base": 80,
+    "perLevel": 2,
+    "category": "Science"
+  },
+  {
+    "name": "Read/Write Native Language",
+    "base": 98,
+    "perLevel": 0,
+    "category": "Automatic"
+  },
+  {
+    "name": "Speaks Native Language",
+    "base": 98,
+    "perLevel": 0,
+    "category": "Automatic"
+  },
+  {
+    "name": "Cryptography",
+    "base": 30,
+    "perLevel": 5,
+    "category": "Communications"
+  },
+  {
+    "name": "Laser",
+    "base": 50,
+    "perLevel": 5,
+    "category": "Communications"
+  },
+  {
+    "name": "Optic Systems",
+    "base": 50,
+    "perLevel": 5,
+    "category": "Communications"
+  },
+  {
+    "name": "Radio: Basic",
+    "base": 50,
+    "perLevel": 5,
+    "category": "Communications"
+  },
+  {
+    "name": "Radio: Scrambler",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Communications"
+  },
+  {
+    "name": "Radio: Satellite",
+    "base": 25,
+    "perLevel": 5,
+    "category": "Communications"
+  },
+  {
+    "name": "Surveillance Systems",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Communications"
+  },
+  {
+    "name": "T.V./Video",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Communications"
+  },
+  {
+    "name": "Computer Operation",
+    "base": 60,
+    "perLevel": 5,
+    "category": "Computer"
+  },
+  {
+    "name": "Computer Programming",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Computer"
+  },
+  {
+    "name": "Cook",
+    "base": 60,
+    "perLevel": 5,
+    "category": "Domestic"
+  },
+  {
+    "name": "Dance",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Domestic"
+  },
+  {
+    "name": "Fish",
+    "base": 60,
+    "perLevel": 5,
+    "category": "Domestic"
+  },
+  {
+    "name": "Sew",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Domestic"
+  },
+  {
+    "name": "Sing",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Domestic"
+  },
+  {
+    "name": "Basic Electronics",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Electrical"
+  },
+  {
+    "name": "Electrical Engineer",
+    "base": 45,
+    "perLevel": 5,
+    "category": "Electrical"
+  },
+  {
+    "name": "Concealment",
+    "base": 20,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Detect Ambush",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Detect Concealment",
+    "base": 30,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Disguise",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Escape Artist",
+    "base": 30,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Forgery",
+    "base": 30,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Impersonation",
+    "base": 40,
+    "perLevel": 4,
+    "category": "Espionage"
+  },
+  {
+    "name": "Interrogation",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Land Navigation",
+    "base": 40,
+    "perLevel": 4,
+    "category": "Espionage"
+  },
+  {
+    "name": "Palming",
+    "base": 25,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Pick Locks",
+    "base": 35,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Pick Pockets",
+    "base": 30,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Tracking",
+    "base": 30,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Wilderness Survival",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Espionage"
+  },
+  {
+    "name": "Automotive Mechanics",
+    "base": 50,
+    "perLevel": 3,
+    "category": "Mechanical"
+  },
+  {
+    "name": "Aircraft Mechanics",
+    "base": 45,
+    "perLevel": 3,
+    "category": "Mechanical"
+  },
+  {
+    "name": "Basic Mechanics",
+    "base": 40,
+    "perLevel": 4,
+    "category": "Mechanical"
+  },
+  {
+    "name": "Computer Repair",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Mechanical"
+  },
+  {
+    "name": "Locksmith",
+    "base": 25,
+    "perLevel": 5,
+    "category": "Mechanical"
+  },
+  {
+    "name": "Mechanical Engineering",
+    "base": 45,
+    "perLevel": 5,
+    "category": "Mechanical"
+  },
+  {
+    "name": "Criminal Science/Forensics",
+    "base": 35,
+    "perLevel": 5,
+    "category": "Medical"
+  },
+  {
+    "name": "First Aid",
+    "base": 50,
+    "perLevel": 5,
+    "category": "Medical"
+  },
+  {
+    "name": "Paramedic",
+    "base": 50,
+    "perLevel": 6,
+    "category": "Medical"
+  },
+  {
+    "name": "Medical Doctor",
+    "base": 70,
+    "perLevel": 3,
+    "category": "Medical",
+    "secondaryBase": 60,
+    "twoTrack": true
+  },
+  {
+    "name": "Pathology",
+    "base": 45,
+    "perLevel": 5,
+    "category": "Medical"
+  },
+  {
+    "name": "Demolitions",
+    "base": 60,
+    "perLevel": 3,
+    "category": "Military"
+  },
+  {
+    "name": "Demolitions Disposal",
+    "base": 60,
+    "perLevel": 3,
+    "category": "Military"
+  },
+  {
+    "name": "Pilot Tank",
+    "base": 50,
+    "perLevel": 4,
+    "category": "Military"
+  },
+  {
+    "name": "Climbing",
+    "base": 50,
+    "perLevel": 8,
+    "category": "Physical"
+  },
+  {
+    "name": "Prowl",
+    "base": 46,
+    "perLevel": 8,
+    "category": "Physical"
+  },
+  {
+    "name": "Swimming",
+    "base": 50,
+    "perLevel": 8,
+    "category": "Physical"
+  },
+  {
+    "name": "Automobile",
+    "base": 76,
+    "perLevel": 4,
+    "category": "Pilot Basic"
+  },
+  {
+    "name": "Race Car",
+    "base": 55,
+    "perLevel": 5,
+    "category": "Pilot Basic"
+  },
+  {
+    "name": "Motorcycle",
+    "base": 60,
+    "perLevel": 4,
+    "category": "Pilot Basic"
+  },
+  {
+    "name": "Truck",
+    "base": 60,
+    "perLevel": 4,
+    "category": "Pilot Basic"
+  },
+  {
+    "name": "Airplane",
+    "base": 70,
+    "perLevel": 4,
+    "category": "Pilot Basic"
+  },
+  {
+    "name": "Boats: Sail",
+    "base": 60,
+    "perLevel": 4,
+    "category": "Pilot Basic"
+  },
+  {
+    "name": "Boats: Motor",
+    "base": 60,
+    "perLevel": 4,
+    "category": "Pilot Basic"
+  },
+  {
+    "name": "Helicopter, Basic",
+    "base": 60,
+    "perLevel": 4,
+    "category": "Pilot Advanced"
+  },
+  {
+    "name": "Helicopter, Combat",
+    "base": 52,
+    "perLevel": 4,
+    "category": "Pilot Advanced"
+  },
+  {
+    "name": "Jet",
+    "base": 60,
+    "perLevel": 4,
+    "category": "Pilot Advanced"
+  },
+  {
+    "name": "Jet Fighter",
+    "base": 50,
+    "perLevel": 4,
+    "category": "Pilot Advanced"
+  },
+  {
+    "name": "Navigation (Air, Land, Water)",
+    "base": 60,
+    "perLevel": 5,
+    "category": "Pilot Related"
+  },
+  {
+    "name": "Read Sensory Equipment",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Pilot Related"
+  },
+  {
+    "name": "Weapon Systems",
+    "base": 50,
+    "perLevel": 2,
+    "category": "Pilot Related"
+  },
+  {
+    "name": "Astrophysics",
+    "base": 30,
+    "perLevel": 5,
+    "category": "Science"
+  },
+  {
+    "name": "Biology",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Science"
+  },
+  {
+    "name": "Botany",
+    "base": 40,
+    "perLevel": 5,
+    "category": "Science"
+  },
+  {
+    "name": "Chemistry",
+    "base": 50,
+    "perLevel": 5,
+    "category": "Science"
+  },
+  {
+    "name": "Chemistry: Analytical",
+    "base": 45,
+    "perLevel": 5,
+    "category": "Science"
+  },
+  {
+    "name": "Mathematics: Advanced",
+    "base": 64,
+    "perLevel": 4,
+    "category": "Science"
+  },
+  {
+    "name": "Art",
+    "base": 40,
+    "perLevel": 4,
+    "category": "Technical"
+  },
+  {
+    "name": "Language",
+    "base": 55,
+    "perLevel": 5,
+    "category": "Technical",
+    "repeats": true
+  },
+  {
+    "name": "Photography",
+    "base": 50,
+    "perLevel": 5,
+    "category": "Technical"
+  },
+  {
+    "name": "Writing",
+    "base": 34,
+    "perLevel": 4,
+    "category": "Technical"
+  },
+  {
+    "name": "Hand to Hand Basic",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Hand to Hand Expert",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Hand to Hand Martial Arts",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Hand to Hand Ninjitsu",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Acrobatics",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Archery",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Athletics (general)",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Body Building",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Boxing",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Fencing",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Gymnastics",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Running",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Swimming Advanced",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "Wrestling",
+    "base": null,
+    "perLevel": null,
+    "category": "Physical",
+    "bonusSkill": true
+  },
+  {
+    "name": "W.P. Blunt",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Bow",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Chain",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Knife",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Sword",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Staff",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Spear/Forked",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Target",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Paired Weapons",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Revolver",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Automatic Pistol",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Rifle",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  },
+  {
+    "name": "W.P. Sub-Machinegun",
+    "base": null,
+    "perLevel": null,
+    "category": "Weapon Proficiency"
+  }
+]

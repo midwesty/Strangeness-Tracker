@@ -1,0 +1,272 @@
+{
+  "16": {
+    "iqSkill": 3,
+    "meSave": 1,
+    "maCharm": 45,
+    "psDamage": 1,
+    "ppCombat": 1,
+    "peSave": 5,
+    "pbCharm": 40,
+    "spdDodge": 1
+  },
+  "17": {
+    "iqSkill": 4,
+    "meSave": 1,
+    "maCharm": 50,
+    "psDamage": 2,
+    "ppCombat": 1,
+    "peSave": 6,
+    "pbCharm": 45,
+    "spdDodge": 1
+  },
+  "18": {
+    "iqSkill": 5,
+    "meSave": 2,
+    "maCharm": 50,
+    "psDamage": 3,
+    "ppCombat": 2,
+    "peSave": 7,
+    "pbCharm": 50,
+    "spdDodge": 1
+  },
+  "19": {
+    "iqSkill": 6,
+    "meSave": 2,
+    "maCharm": 60,
+    "psDamage": 4,
+    "ppCombat": 2,
+    "peSave": 8,
+    "pbCharm": 55,
+    "spdDodge": 2
+  },
+  "20": {
+    "iqSkill": 7,
+    "meSave": 3,
+    "maCharm": 65,
+    "psDamage": 5,
+    "ppCombat": 3,
+    "peSave": 9,
+    "pbCharm": 60,
+    "spdDodge": 2
+  },
+  "21": {
+    "iqSkill": 8,
+    "meSave": 3,
+    "maCharm": 70,
+    "psDamage": 6,
+    "ppCombat": 3,
+    "peSave": 10,
+    "pbCharm": 65,
+    "spdDodge": 2
+  },
+  "22": {
+    "iqSkill": 9,
+    "meSave": 4,
+    "maCharm": 75,
+    "psDamage": 7,
+    "ppCombat": 4,
+    "peSave": 11,
+    "pbCharm": 70,
+    "spdDodge": 3
+  },
+  "23": {
+    "iqSkill": 10,
+    "meSave": 4,
+    "maCharm": 80,
+    "psDamage": 8,
+    "ppCombat": 4,
+    "peSave": 12,
+    "pbCharm": 74,
+    "spdDodge": 3
+  },
+  "24": {
+    "iqSkill": 11,
+    "meSave": 4,
+    "maCharm": 84,
+    "psDamage": 9,
+    "ppCombat": 5,
+    "peSave": 13,
+    "pbCharm": 78,
+    "spdDodge": 3
+  },
+  "25": {
+    "iqSkill": 12,
+    "meSave": 5,
+    "maCharm": 88,
+    "psDamage": 10,
+    "ppCombat": 5,
+    "peSave": 14,
+    "pbCharm": 82,
+    "spdDodge": 4
+  },
+  "26": {
+    "iqSkill": 13,
+    "meSave": 5,
+    "maCharm": 90,
+    "psDamage": 11,
+    "ppCombat": 6,
+    "peSave": 15,
+    "pbCharm": 86,
+    "spdDodge": 4
+  },
+  "27": {
+    "iqSkill": 14,
+    "meSave": 6,
+    "maCharm": 92,
+    "psDamage": 12,
+    "ppCombat": 6,
+    "peSave": 16,
+    "pbCharm": 90,
+    "spdDodge": 4
+  },
+  "28": {
+    "iqSkill": 15,
+    "meSave": 6,
+    "maCharm": 94,
+    "psDamage": 13,
+    "ppCombat": 7,
+    "peSave": 17,
+    "pbCharm": 92,
+    "spdDodge": 4
+  },
+  "29": {
+    "iqSkill": 16,
+    "meSave": 7,
+    "maCharm": 96,
+    "psDamage": 14,
+    "ppCombat": 7,
+    "peSave": 18,
+    "pbCharm": 94,
+    "spdDodge": 4
+  },
+  "30": {
+    "iqSkill": 17,
+    "meSave": 7,
+    "maCharm": 98,
+    "psDamage": 15,
+    "ppCombat": 8,
+    "peSave": 19,
+    "pbCharm": 96,
+    "spdDodge": 4
+  },
+  "31": {
+    "iqSkill": 18,
+    "meSave": 8,
+    "maCharm": 98,
+    "psDamage": 16,
+    "ppCombat": 8,
+    "peSave": 20,
+    "pbCharm": 97,
+    "spdDodge": 5
+  },
+  "32": {
+    "iqSkill": 19,
+    "meSave": 8,
+    "maCharm": 98,
+    "psDamage": 17,
+    "ppCombat": 9,
+    "peSave": 21,
+    "pbCharm": 98,
+    "spdDodge": 5
+  },
+  "33": {
+    "iqSkill": 20,
+    "meSave": 9,
+    "maCharm": 98,
+    "psDamage": 18,
+    "ppCombat": 9,
+    "peSave": 22,
+    "pbCharm": 99,
+    "spdDodge": 5
+  },
+  "34": {
+    "iqSkill": 21,
+    "meSave": 9,
+    "maCharm": 98,
+    "psDamage": 19,
+    "ppCombat": 10,
+    "peSave": 23,
+    "pbCharm": 99,
+    "spdDodge": 5
+  },
+  "35": {
+    "iqSkill": 22,
+    "meSave": 10,
+    "maCharm": 98,
+    "psDamage": 20,
+    "ppCombat": 10,
+    "peSave": 24,
+    "pbCharm": 99,
+    "spdDodge": 5
+  },
+  "36": {
+    "iqSkill": 23,
+    "meSave": 10,
+    "maCharm": 99,
+    "psDamage": 21,
+    "ppCombat": 11,
+    "peSave": 25,
+    "pbCharm": 99,
+    "spdDodge": 6
+  },
+  "37": {
+    "iqSkill": 24,
+    "meSave": 11,
+    "maCharm": 99,
+    "psDamage": 22,
+    "ppCombat": 11,
+    "peSave": 26,
+    "pbCharm": 99,
+    "spdDodge": 6
+  },
+  "38": {
+    "iqSkill": 25,
+    "meSave": 11,
+    "maCharm": 99,
+    "psDamage": 23,
+    "ppCombat": 12,
+    "peSave": 27,
+    "pbCharm": 99,
+    "spdDodge": 6
+  },
+  "39": {
+    "iqSkill": 26,
+    "meSave": 12,
+    "maCharm": 99,
+    "psDamage": 24,
+    "ppCombat": 12,
+    "peSave": 28,
+    "pbCharm": 99,
+    "spdDodge": 6
+  },
+  "40": {
+    "iqSkill": 27,
+    "meSave": 12,
+    "maCharm": 99,
+    "psDamage": 25,
+    "ppCombat": 13,
+    "peSave": 29,
+    "pbCharm": 99,
+    "spdDodge": 6
+  },
+  "41": {
+    "iqSkill": 28,
+    "meSave": 13,
+    "maCharm": 99,
+    "psDamage": 26,
+    "ppCombat": 13,
+    "peSave": 30,
+    "pbCharm": 99,
+    "spdDodge": 6
+  },
+  "42": {
+    "iqSkill": 29,
+    "meSave": 13,
+    "maCharm": 99,
+    "psDamage": 27,
+    "ppCombat": 14,
+    "peSave": 31,
+    "pbCharm": 99,
+    "spdDodge": 7
+  }
+}

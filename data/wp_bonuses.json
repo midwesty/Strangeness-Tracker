@@ -1,0 +1,236 @@
+{
+  "W.P. Blunt": [
+    {
+      "level": 1,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 4,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 8,
+      "parry": 1
+    }
+  ],
+  "W.P. Bow": [
+    {
+      "level": 1,
+      "strike": 1,
+      "rateOfFire": 2
+    },
+    {
+      "level": 3,
+      "strike": 1,
+      "rateOfFire": 1
+    },
+    {
+      "level": 5,
+      "strike": 1,
+      "rateOfFire": 1
+    },
+    {
+      "level": 7,
+      "strike": 1,
+      "rateOfFire": 1
+    },
+    {
+      "level": 9,
+      "strike": 1,
+      "rateOfFire": 1
+    },
+    {
+      "level": 11,
+      "strike": 1,
+      "rateOfFire": 1
+    },
+    {
+      "level": 13,
+      "strike": 1,
+      "rateOfFire": 1
+    }
+  ],
+  "W.P. Chain": [
+    {
+      "level": 1,
+      "strike": 1
+    },
+    {
+      "level": 4,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 8,
+      "strike": 1
+    }
+  ],
+  "W.P. Knife": [
+    {
+      "level": 1,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 2,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 5,
+      "parry": 1
+    },
+    {
+      "level": 6,
+      "strike": 1
+    },
+    {
+      "level": 9,
+      "strike": 1
+    }
+  ],
+  "W.P. Staff": [
+    {
+      "level": 2,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 5,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 8,
+      "parry": 1
+    },
+    {
+      "level": 11,
+      "parry": 1
+    }
+  ],
+  "W.P. Sword": [
+    {
+      "level": 1,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 4,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 8,
+      "strike": 1,
+      "parry": 1
+    }
+  ],
+  "W.P. Spear/Forked": [
+    {
+      "level": 1,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 4,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 7,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 10,
+      "strike": 1,
+      "parry": 1
+    },
+    {
+      "level": 13,
+      "strike": 1,
+      "parry": 1
+    }
+  ],
+  "W.P. Target": [
+    {
+      "level": 2,
+      "strike": 1
+    },
+    {
+      "level": 4,
+      "strike": 1
+    },
+    {
+      "level": 7,
+      "strike": 1
+    },
+    {
+      "level": 10,
+      "strike": 1
+    },
+    {
+      "level": 13,
+      "strike": 1
+    }
+  ],
+  "W.P. Revolver": [
+    {
+      "level": 1,
+      "strike": 1
+    },
+    {
+      "level": 4,
+      "strike": 1
+    },
+    {
+      "level": 8,
+      "strike": 1
+    }
+  ],
+  "W.P. Automatic Pistol": [
+    {
+      "level": 1,
+      "strike": 1
+    },
+    {
+      "level": 4,
+      "strike": 1
+    },
+    {
+      "level": 8,
+      "strike": 1
+    }
+  ],
+  "W.P. Rifle": [
+    {
+      "level": 1,
+      "strike": 1
+    },
+    {
+      "level": 4,
+      "strike": 1
+    },
+    {
+      "level": 8,
+      "strike": 1
+    }
+  ],
+  "W.P. Sub-Machinegun": [
+    {
+      "level": 1,
+      "strike": 1
+    },
+    {
+      "level": 4,
+      "strike": 1
+    },
+    {
+      "level": 8,
+      "strike": 1
+    }
+  ]
+}

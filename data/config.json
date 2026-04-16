@@ -1,0 +1,23 @@
+{
+  "appName": "Strangeness Tracker 1984",
+  "version": "0.1.0",
+  "maxUndo": 100,
+  "defaultStatuses": [
+    "stunned",
+    "knockout",
+    "coma",
+    "poisoned",
+    "drugged",
+    "blinded",
+    "deafened",
+    "mute",
+    "paralyzed",
+    "pain",
+    "exhausted",
+    "encumbered",
+    "bleeding",
+    "prone",
+    "mind_trapped",
+    "mind_blocked"
+  ]
+}

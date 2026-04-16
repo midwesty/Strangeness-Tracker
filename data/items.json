@@ -1,0 +1,537 @@
+[
+  {
+    "id": "sai_pair",
+    "name": "Sai (Pair)",
+    "category": "Ancient Weapon",
+    "cost": 120,
+    "weight": 3,
+    "damage": "1D6",
+    "damageType": "piercing",
+    "wp": "W.P. Paired Weapons",
+    "slots": [
+      "mainHand",
+      "offHand"
+    ],
+    "tags": [
+      "weapon",
+      "paired",
+      "ninja"
+    ]
+  },
+  {
+    "id": "katana",
+    "name": "Katana",
+    "category": "Ancient Weapon",
+    "cost": 500,
+    "weight": 3,
+    "damage": "2D6",
+    "wp": "W.P. Sword",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "sword"
+    ]
+  },
+  {
+    "id": "wakizashi",
+    "name": "Wakizashi",
+    "category": "Ancient Weapon",
+    "cost": 250,
+    "weight": 2,
+    "damage": "2D4",
+    "wp": "W.P. Sword",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "sword"
+    ]
+  },
+  {
+    "id": "daisho",
+    "name": "Daisho Set",
+    "category": "Ancient Weapon",
+    "cost": 750,
+    "weight": 5,
+    "damage": "Katana 2D6 + Wakizashi 2D4",
+    "wp": "W.P. Paired Weapons",
+    "slots": [
+      "mainHand",
+      "offHand"
+    ],
+    "tags": [
+      "weapon",
+      "paired",
+      "sword"
+    ]
+  },
+  {
+    "id": "bo_staff",
+    "name": "Bo Staff",
+    "category": "Ancient Weapon",
+    "cost": 120,
+    "weight": 4,
+    "damage": "1D8",
+    "wp": "W.P. Staff",
+    "slots": [
+      "twoHands"
+    ],
+    "tags": [
+      "weapon",
+      "staff"
+    ]
+  },
+  {
+    "id": "nunchaku_pair",
+    "name": "Nunchaku (Pair)",
+    "category": "Ancient Weapon",
+    "cost": 80,
+    "weight": 3,
+    "damage": "1D8",
+    "wp": "W.P. Chain",
+    "slots": [
+      "mainHand",
+      "offHand"
+    ],
+    "tags": [
+      "weapon",
+      "paired",
+      "chain"
+    ]
+  },
+  {
+    "id": "tanto",
+    "name": "Tanto / Aikuchi",
+    "category": "Ancient Weapon",
+    "cost": 100,
+    "weight": 1,
+    "damage": "1D4",
+    "wp": "W.P. Knife",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "knife"
+    ]
+  },
+  {
+    "id": "shuriken",
+    "name": "Shuriken (x5)",
+    "category": "Ancient Weapon",
+    "cost": 25,
+    "weight": 1,
+    "damage": "1D4",
+    "wp": "W.P. Target",
+    "slots": [],
+    "tags": [
+      "weapon",
+      "thrown"
+    ]
+  },
+  {
+    "id": "ninja_bow",
+    "name": "Ninja Bow",
+    "category": "Ancient Weapon",
+    "cost": 500,
+    "weight": 3,
+    "damage": "1D8",
+    "wp": "W.P. Bow",
+    "slots": [
+      "twoHands"
+    ],
+    "tags": [
+      "weapon",
+      "bow"
+    ]
+  },
+  {
+    "id": "samurai_bow",
+    "name": "Samurai Long Bow",
+    "category": "Ancient Weapon",
+    "cost": 1000,
+    "weight": 4,
+    "damage": "2D6",
+    "wp": "W.P. Bow",
+    "slots": [
+      "twoHands"
+    ],
+    "tags": [
+      "weapon",
+      "bow"
+    ]
+  },
+  {
+    "id": "crossbow_heavy",
+    "name": "Heavy Crossbow",
+    "category": "Ancient Weapon",
+    "cost": 300,
+    "weight": 8,
+    "damage": "2D6",
+    "wp": "W.P. Bow",
+    "slots": [
+      "twoHands"
+    ],
+    "tags": [
+      "weapon",
+      "bow"
+    ]
+  },
+  {
+    "id": "crossbow_pistol",
+    "name": "Pistol Crossbow",
+    "category": "Ancient Weapon",
+    "cost": 150,
+    "weight": 3,
+    "damage": "1D10",
+    "wp": "W.P. Bow",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "bow"
+    ]
+  },
+  {
+    "id": "revolver_22",
+    "name": ".22/.25 Revolver",
+    "category": "Modern Weapon",
+    "cost": 100,
+    "weight": 1,
+    "damage": "1D6/round",
+    "wp": "W.P. Revolver",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "firearm"
+    ]
+  },
+  {
+    "id": "revolver_38",
+    "name": ".38 Service-Six Ruger Revolver",
+    "category": "Modern Weapon",
+    "cost": 250,
+    "weight": 2,
+    "damage": "2D6/round",
+    "wp": "W.P. Revolver",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "firearm"
+    ]
+  },
+  {
+    "id": "revolver_357",
+    "name": "Barracuda FN .357 Magnum",
+    "category": "Modern Weapon",
+    "cost": 500,
+    "weight": 2.1,
+    "damage": "4D6/round",
+    "wp": "W.P. Revolver",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "firearm"
+    ]
+  },
+  {
+    "id": "auto_765",
+    "name": "7.65mm PP Walther",
+    "category": "Modern Weapon",
+    "cost": 600,
+    "weight": 1.5,
+    "damage": "2D6/round",
+    "wp": "W.P. Automatic Pistol",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "firearm"
+    ]
+  },
+  {
+    "id": "auto_9mm",
+    "name": "Browning GP 35 9mm",
+    "category": "Modern Weapon",
+    "cost": 600,
+    "weight": 1.9,
+    "damage": "2D6/round",
+    "wp": "W.P. Automatic Pistol",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "firearm"
+    ]
+  },
+  {
+    "id": "auto_45",
+    "name": ".45 Model 15 Automatic",
+    "category": "Modern Weapon",
+    "cost": 400,
+    "weight": 2.1,
+    "damage": "4D6/round",
+    "wp": "W.P. Automatic Pistol",
+    "slots": [
+      "mainHand"
+    ],
+    "tags": [
+      "weapon",
+      "firearm"
+    ]
+  },
+  {
+    "id": "smg_skorpion",
+    "name": "Skorpion 7.65mm SMG",
+    "category": "Modern Weapon",
+    "cost": 1300,
+    "weight": 3.5,
+    "damage": "1D8/round",
+    "wp": "W.P. Sub-Machinegun",
+    "slots": [
+      "twoHands"
+    ],
+    "tags": [
+      "weapon",
+      "firearm"
+    ]
+  },
+  {
+    "id": "padding",
+    "name": "Padding / Quilt Armor",
+    "category": "Armor",
+    "cost": 175,
+    "weight": 6,
+    "ar": 8,
+    "sdc": 15,
+    "slots": [
+      "armor"
+    ],
+    "tags": [
+      "armor",
+      "ancient"
+    ]
+  },
+  {
+    "id": "soft_leather",
+    "name": "Soft Leather Armor",
+    "category": "Armor",
+    "cost": 300,
+    "weight": 8,
+    "ar": 9,
+    "sdc": 20,
+    "slots": [
+      "armor"
+    ],
+    "tags": [
+      "armor",
+      "ancient"
+    ]
+  },
+  {
+    "id": "studded_leather",
+    "name": "Studded Leather Armor",
+    "category": "Armor",
+    "cost": 600,
+    "weight": 20,
+    "ar": 12,
+    "sdc": 38,
+    "slots": [
+      "armor"
+    ],
+    "tags": [
+      "armor",
+      "ancient"
+    ]
+  },
+  {
+    "id": "chain_mail",
+    "name": "Chain Mail",
+    "category": "Armor",
+    "cost": 900,
+    "weight": 40,
+    "ar": 13,
+    "sdc": 44,
+    "slots": [
+      "armor"
+    ],
+    "tags": [
+      "armor",
+      "ancient"
+    ]
+  },
+  {
+    "id": "light_half_suit",
+    "name": "Modern Light Half Suit",
+    "category": "Armor",
+    "cost": 1200,
+    "weight": 12,
+    "ar": 10,
+    "sdc": 50,
+    "slots": [
+      "armor"
+    ],
+    "tags": [
+      "armor",
+      "modern"
+    ]
+  },
+  {
+    "id": "concealed_armor",
+    "name": "Concealed Armor",
+    "category": "Armor",
+    "cost": 900,
+    "weight": 12,
+    "ar": 10,
+    "sdc": 60,
+    "slots": [
+      "armor"
+    ],
+    "tags": [
+      "armor",
+      "modern"
+    ]
+  },
+  {
+    "id": "backpack",
+    "name": "Backpack",
+    "category": "Container",
+    "cost": 25,
+    "weight": 2,
+    "containerCapacity": 40,
+    "slots": [
+      "back"
+    ],
+    "tags": [
+      "container"
+    ]
+  },
+  {
+    "id": "duffel_bag",
+    "name": "Duffel Bag",
+    "category": "Container",
+    "cost": 20,
+    "weight": 1,
+    "containerCapacity": 60,
+    "slots": [],
+    "tags": [
+      "container"
+    ]
+  },
+  {
+    "id": "rope",
+    "name": "Rope (50 ft)",
+    "category": "Gear",
+    "cost": 15,
+    "weight": 8,
+    "tags": [
+      "gear"
+    ]
+  },
+  {
+    "id": "flashlight",
+    "name": "Flashlight",
+    "category": "Gear",
+    "cost": 10,
+    "weight": 1,
+    "tags": [
+      "gear"
+    ]
+  },
+  {
+    "id": "binoculars",
+    "name": "Binoculars",
+    "category": "Gear",
+    "cost": 80,
+    "weight": 2,
+    "tags": [
+      "gear"
+    ]
+  },
+  {
+    "id": "first_aid_kit",
+    "name": "First Aid Kit",
+    "category": "Gear",
+    "cost": 35,
+    "weight": 3,
+    "tags": [
+      "gear",
+      "medical"
+    ]
+  },
+  {
+    "id": "lock_picks",
+    "name": "Lock Picks",
+    "category": "Contraband Gear",
+    "cost": 30,
+    "weight": 0.2,
+    "tags": [
+      "gear",
+      "contraband"
+    ]
+  },
+  {
+    "id": "tension_bar",
+    "name": "Tension Bar",
+    "category": "Contraband Gear",
+    "cost": 30,
+    "weight": 0.2,
+    "tags": [
+      "gear",
+      "contraband"
+    ]
+  },
+  {
+    "id": "car_openers",
+    "name": "Car Opener Set",
+    "category": "Contraband Gear",
+    "cost": 25,
+    "weight": 1,
+    "tags": [
+      "gear",
+      "contraband"
+    ]
+  },
+  {
+    "id": "cross_bar",
+    "name": "Cross Bar",
+    "category": "Tool",
+    "cost": 12,
+    "weight": 4,
+    "tags": [
+      "tool"
+    ]
+  },
+  {
+    "id": "drill",
+    "name": "Drill",
+    "category": "Tool",
+    "cost": 25,
+    "weight": 5,
+    "tags": [
+      "tool"
+    ]
+  },
+  {
+    "id": "bolt_cutters",
+    "name": "Bolt Cutters",
+    "category": "Tool",
+    "cost": 80,
+    "weight": 6,
+    "tags": [
+      "tool"
+    ]
+  }
+]

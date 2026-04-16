@@ -1,0 +1,3141 @@
+[
+  {
+    "id": "turtle",
+    "name": "Turtle",
+    "category": "Urban",
+    "sizeLevel": 1,
+    "weight": "under 1 pound",
+    "length": "to 5 inches",
+    "build": "Short",
+    "totalBioE": 95,
+    "attributeBonuses": {},
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Light Natural Body Armour",
+        "cost": 15,
+        "effect": "A.R. 8, S.D.C. +20"
+      },
+      {
+        "name": "Medium Natural Body Armour",
+        "cost": 30,
+        "effect": "A.R. 10, S.D.C. +40"
+      },
+      {
+        "name": "Heavy Natural Body Armour",
+        "cost": 45,
+        "effect": "A.R. 12, S.D.C. +60"
+      },
+      {
+        "name": "Extra-Heavy Natural Body Armour",
+        "cost": 60,
+        "effect": "A.R. 14, S.D.C. +80"
+      },
+      {
+        "name": "Hold Breath",
+        "cost": 5,
+        "effect": "Hold breath"
+      },
+      {
+        "name": "Swimming",
+        "cost": 10,
+        "effect": "Basic swim 75%"
+      }
+    ],
+    "naturalWeapons": [],
+    "notes": "TMNT were common small pond turtles.",
+    "variants": []
+  },
+  {
+    "id": "rodent_mouse",
+    "name": "Rodent (Mouse/Hamster)",
+    "category": "Urban",
+    "sizeLevel": 1,
+    "weight": "to 1 pound",
+    "length": "6 to 8 inches long",
+    "build": "Medium",
+    "totalBioE": 80,
+    "attributeBonuses": {
+      "iq": 2,
+      "me": 1,
+      "pp": 1
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Digging",
+        "cost": 10,
+        "effect": "Digging"
+      },
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Claws (climbing)",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Teeth",
+        "cost": 10,
+        "damage": "1D4"
+      }
+    ],
+    "notes": "Use for mice or hamsters.",
+    "variants": []
+  },
+  {
+    "id": "rodent_rat",
+    "name": "Rodent (Rat/Guinea Pig)",
+    "category": "Urban",
+    "sizeLevel": 2,
+    "weight": "to 5 pounds",
+    "length": "to 14 inches long",
+    "build": "Medium",
+    "totalBioE": 75,
+    "attributeBonuses": {
+      "iq": 2,
+      "me": 1,
+      "pp": 1
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Digging",
+        "cost": 10,
+        "effect": "Digging"
+      },
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Claws (climbing)",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Teeth",
+        "cost": 10,
+        "damage": "1D4"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "dog_mongrel",
+    "name": "Dog (Mongrel)",
+    "category": "Urban",
+    "sizeLevel": 5,
+    "weight": "varies by breed",
+    "length": "varies",
+    "build": "Medium",
+    "totalBioE": 60,
+    "attributeBonuses": {
+      "iq": 2,
+      "me": 1,
+      "pp": 1
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "Tracking by smell"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Claws",
+        "cost": 5,
+        "damage": "1D4"
+      }
+    ],
+    "notes": "Base mongrel dog. Reduce BIO-E by 10 for each size step above 5.",
+    "variants": []
+  },
+  {
+    "id": "cat_domestic",
+    "name": "Cat \u2014 Domestic",
+    "category": "Urban",
+    "sizeLevel": 3,
+    "weight": "to 10 pounds",
+    "length": "12 to 24 inches",
+    "build": "Medium",
+    "totalBioE": 70,
+    "attributeBonuses": {
+      "me": 2,
+      "pp": 3
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Nightvision",
+        "cost": 5,
+        "effect": "Nightvision 50 feet"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Retractable Claws (climbing)",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Retractable Claws (climbing)",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "cat_wild_bobcat",
+    "name": "Cat \u2014 Wild (Bobcat)",
+    "category": "Wild",
+    "sizeLevel": 4,
+    "weight": "18-22 pounds",
+    "length": "32-42 inches",
+    "build": "Short",
+    "totalBioE": 65,
+    "attributeBonuses": {
+      "me": 2,
+      "pp": 3
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Nightvision",
+        "cost": 5,
+        "effect": "Nightvision 50 feet"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Retractable Claws (climbing)",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Retractable Claws (climbing)",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "cat_wild_lynx",
+    "name": "Cat \u2014 Wild (Lynx)",
+    "category": "Wild",
+    "sizeLevel": 5,
+    "weight": "25-35 pounds",
+    "length": "36-40 inches",
+    "build": "Short",
+    "totalBioE": 60,
+    "attributeBonuses": {
+      "me": 2,
+      "pp": 3
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Nightvision",
+        "cost": 5,
+        "effect": "Nightvision 50 feet"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Retractable Claws (climbing)",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Retractable Claws (climbing)",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "raccoon",
+    "name": "Raccoon",
+    "category": "Wild",
+    "sizeLevel": 4,
+    "weight": "15-18 pounds",
+    "length": "34-38 inches",
+    "build": "Short",
+    "totalBioE": 55,
+    "attributeBonuses": {
+      "iq": 4,
+      "me": 2,
+      "ma": 2,
+      "pp": 1
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Touch",
+        "cost": 5,
+        "effect": "+ touch"
+      },
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      }
+    ],
+    "naturalWeapons": [],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "squirrel",
+    "name": "Squirrel",
+    "category": "Urban",
+    "sizeLevel": 1,
+    "weight": "to 1 pound",
+    "length": "16-20 inches with tail",
+    "build": "Long",
+    "totalBioE": 80,
+    "attributeBonuses": {
+      "pp": 1,
+      "spd": 4
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Glide (flying squirrels only)",
+        "cost": 10,
+        "effect": "Glide"
+      },
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Claws (climbing)",
+        "cost": 5,
+        "damage": "1D4"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "rabbit",
+    "name": "Rabbit",
+    "category": "Rural",
+    "sizeLevel": 3,
+    "weight": "5 to 8 pounds",
+    "length": "12-18 inches",
+    "build": "Medium",
+    "totalBioE": 70,
+    "attributeBonuses": {
+      "pp": 1,
+      "spd": 4
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Leaping Ability",
+        "cost": 5,
+        "effect": "Maximum Jump/Leap x2"
+      },
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "frog",
+    "name": "Frog",
+    "category": "Urban",
+    "sizeLevel": 2,
+    "weight": "to 3 pounds",
+    "length": "to 12 inches long",
+    "build": "Medium",
+    "totalBioE": 80,
+    "attributeBonuses": {
+      "pp": 1,
+      "spd": 2
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Nightvision",
+        "cost": 5,
+        "effect": "Nightvision 25 feet"
+      },
+      {
+        "name": "Leaping Ability",
+        "cost": 5,
+        "effect": "Double jump/leap"
+      },
+      {
+        "name": "Swimming",
+        "cost": 15,
+        "effect": "Competitive swim"
+      },
+      {
+        "name": "Hold Breath",
+        "cost": 10,
+        "effect": "Hold breath"
+      }
+    ],
+    "naturalWeapons": [],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "bat",
+    "name": "Bat",
+    "category": "Urban",
+    "sizeLevel": 1,
+    "weight": "36 ounces",
+    "length": "1-2 foot wing span",
+    "build": "Medium",
+    "totalBioE": 70,
+    "attributeBonuses": {
+      "iq": 1,
+      "me": 1,
+      "ma": 1,
+      "spd": 2
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "Partial hands at wing ends",
+          "cost": 5
+        },
+        {
+          "label": "Full hands at wing ends",
+          "cost": 10
+        },
+        {
+          "label": "Extra set of arms and hands",
+          "cost": 20
+        }
+      ],
+      "biped": [
+        {
+          "label": "Full Automatic",
+          "cost": 0
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Glide",
+        "cost": 10,
+        "effect": "Glide"
+      },
+      {
+        "name": "Flight",
+        "cost": 20,
+        "effect": "Flight up to 160mph"
+      },
+      {
+        "name": "Sonar",
+        "cost": 5,
+        "effect": "See by sonar"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "beaver",
+    "name": "Beaver",
+    "category": "Wild",
+    "sizeLevel": 6,
+    "weight": "40-60 pounds",
+    "length": "to 48 inches",
+    "build": "Short",
+    "totalBioE": 40,
+    "attributeBonuses": {
+      "iq": 5,
+      "me": 1,
+      "ps": 3,
+      "pe": 1
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "Partial Automatic (5-fingered)",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "biped": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Wood-Chopping Teeth",
+        "cost": 10,
+        "effect": "Chew through hardwood ~1 inch/melee"
+      },
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "Hold Breath",
+        "cost": 10,
+        "effect": "Hold breath"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "bear_black",
+    "name": "Bear (Black)",
+    "category": "Wild",
+    "sizeLevel": 14,
+    "weight": "300-400 pounds",
+    "length": "4-6 feet tall",
+    "build": "Short",
+    "totalBioE": 5,
+    "attributeBonuses": {
+      "ps": 6,
+      "pp": 1,
+      "pe": 4
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "Advanced Smell",
+        "cost": 15,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Bite",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Bite",
+        "cost": 10,
+        "damage": "1D10"
+      },
+      {
+        "name": "Claws",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Claws",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "bear_grizzly",
+    "name": "Bear (Grizzly)",
+    "category": "Wild",
+    "sizeLevel": 16,
+    "weight": "400-600 pounds",
+    "length": "6-7 feet tall",
+    "build": "Short",
+    "totalBioE": 0,
+    "attributeBonuses": {
+      "ps": 6,
+      "pp": 1,
+      "pe": 4
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "Advanced Smell",
+        "cost": 15,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Bite",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Bite",
+        "cost": 10,
+        "damage": "1D10"
+      },
+      {
+        "name": "Claws",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Claws",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "coyote",
+    "name": "Canine \u2014 Coyote",
+    "category": "Wild",
+    "sizeLevel": 5,
+    "weight": "25-30 pounds",
+    "length": "4-5 feet long",
+    "build": "Medium",
+    "totalBioE": 55,
+    "attributeBonuses": {
+      "iq": 4,
+      "me": 2,
+      "ma": 2,
+      "pp": 2
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Claws",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Teeth",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "wolf",
+    "name": "Canine \u2014 Wolf",
+    "category": "Wild",
+    "sizeLevel": 6,
+    "weight": "60-75 pounds",
+    "length": "5-6 feet long",
+    "build": "Medium",
+    "totalBioE": 50,
+    "attributeBonuses": {
+      "iq": 4,
+      "me": 2,
+      "ma": 2,
+      "pp": 2
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Claws",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Teeth",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "fox",
+    "name": "Canine \u2014 Fox",
+    "category": "Wild",
+    "sizeLevel": 3,
+    "weight": "9-10 pounds",
+    "length": "to 40 inches long",
+    "build": "Long",
+    "totalBioE": 60,
+    "attributeBonuses": {
+      "iq": 2,
+      "me": 8,
+      "spd": 3
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Teeth",
+        "cost": 10,
+        "damage": "1D8"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "boar",
+    "name": "Boar",
+    "category": "Wild",
+    "sizeLevel": 11,
+    "weight": "200-300 pounds",
+    "length": "4 to 5 feet long",
+    "build": "Short",
+    "totalBioE": 30,
+    "attributeBonuses": {
+      "ps": 2,
+      "pp": 1,
+      "pe": 1,
+      "spd": 1
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Small Tusks",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Large Tusks",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "deer",
+    "name": "Deer",
+    "category": "Wild",
+    "sizeLevel": 13,
+    "weight": "to 400 pounds",
+    "length": "to 6 feet long",
+    "build": "Medium",
+    "totalBioE": 20,
+    "attributeBonuses": {
+      "ps": 1,
+      "pe": 1,
+      "spd": 3
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Small Antlers",
+        "cost": 5,
+        "damage": "1D6"
+      },
+      {
+        "name": "Large Antlers",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "elephant",
+    "name": "Elephant",
+    "category": "Zoo",
+    "sizeLevel": 20,
+    "weight": "to 10,000 pounds",
+    "length": "to 10 feet tall",
+    "build": "Short",
+    "totalBioE": 0,
+    "attributeBonuses": {
+      "ps": 2,
+      "spd": 3
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Prehensile Trunk",
+        "cost": 10,
+        "effect": "Additional partial hand"
+      },
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "Thick Skin",
+        "cost": 5,
+        "effect": "S.D.C. +20"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Tusks",
+        "cost": 10,
+        "damage": "variable"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "horse",
+    "name": "Horse",
+    "category": "Rural",
+    "sizeLevel": 18,
+    "weight": "800 to 1,400 pounds",
+    "length": "to 60 inches tall at shoulder",
+    "build": "Medium",
+    "totalBioE": 0,
+    "attributeBonuses": {
+      "ps": 2,
+      "spd": 6
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 10
+        },
+        {
+          "label": "Full",
+          "cost": 15
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 10
+        },
+        {
+          "label": "Full",
+          "cost": 15
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 10
+        },
+        {
+          "label": "Full",
+          "cost": 15
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "+10 S.D.C.",
+        "cost": 5,
+        "effect": "S.D.C. +10"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Hoofed Feet Kick",
+        "cost": 5,
+        "damage": "1D8"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "goat",
+    "name": "Goat",
+    "category": "Rural",
+    "sizeLevel": 6,
+    "weight": "to 75 pounds",
+    "length": "to 40 inches long",
+    "build": "Medium",
+    "totalBioE": 55,
+    "attributeBonuses": {
+      "iq": 2,
+      "pe": 4,
+      "spd": 1
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "Toxic Resistance",
+        "cost": 10,
+        "effect": "+5 save vs poisons, +3 vs drugs"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Horns",
+        "cost": 5,
+        "damage": "1D8"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "rabbit",
+    "name": "Rabbit",
+    "category": "Rural",
+    "sizeLevel": 3,
+    "weight": "5 to 8 pounds",
+    "length": "12-18 inches",
+    "build": "Medium",
+    "totalBioE": 70,
+    "attributeBonuses": {
+      "pp": 1,
+      "spd": 4
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Leaping Ability",
+        "cost": 5,
+        "effect": "Double jump/leap"
+      },
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "sheep",
+    "name": "Sheep",
+    "category": "Rural",
+    "sizeLevel": 6,
+    "weight": "to 75 pounds",
+    "length": "3 to 5 feet long",
+    "build": "Medium",
+    "totalBioE": 60,
+    "attributeBonuses": {},
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Hearing",
+        "cost": 5,
+        "effect": "+ hearing"
+      },
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Horns",
+        "cost": 5,
+        "damage": "1D8"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "pig",
+    "name": "Pig",
+    "category": "Rural",
+    "sizeLevel": 10,
+    "weight": "200 to 300 pounds",
+    "length": "4 to 5 feet long",
+    "build": "Short",
+    "totalBioE": 30,
+    "attributeBonuses": {
+      "ps": 1,
+      "pe": 1
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Tusks",
+        "cost": 5,
+        "damage": "1D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "apes_chimp",
+    "name": "Apes \u2014 Chimpanzee",
+    "category": "Zoo",
+    "sizeLevel": 9,
+    "weight": "175 pounds",
+    "length": "5 feet tall",
+    "build": "Medium",
+    "totalBioE": 10,
+    "attributeBonuses": {
+      "iq": 6,
+      "me": 2,
+      "ma": 2,
+      "ps": 4,
+      "pe": 3
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "Partial Automatic (5-fingered)",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "biped": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Touch",
+        "cost": 5,
+        "effect": "+ touch"
+      },
+      {
+        "name": "Prehensile Feet",
+        "cost": 10,
+        "effect": "Feet as partial hands"
+      }
+    ],
+    "naturalWeapons": [],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "apes_gorilla",
+    "name": "Apes \u2014 Gorilla",
+    "category": "Zoo",
+    "sizeLevel": 11,
+    "weight": "200-800 pounds",
+    "length": "6 feet tall",
+    "build": "Medium",
+    "totalBioE": 0,
+    "attributeBonuses": {
+      "iq": 6,
+      "me": 2,
+      "ma": 2,
+      "ps": 4,
+      "pe": 3
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "Partial Automatic (5-fingered)",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "biped": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Touch",
+        "cost": 5,
+        "effect": "+ touch"
+      },
+      {
+        "name": "Prehensile Feet",
+        "cost": 10,
+        "effect": "Feet as partial hands"
+      }
+    ],
+    "naturalWeapons": [],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "apes_orangutan",
+    "name": "Apes \u2014 Orangutan",
+    "category": "Zoo",
+    "sizeLevel": 8,
+    "weight": "150 pounds",
+    "length": "4.5 feet tall",
+    "build": "Medium",
+    "totalBioE": 15,
+    "attributeBonuses": {
+      "iq": 6,
+      "me": 2,
+      "ma": 2,
+      "ps": 4,
+      "pe": 3
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "Partial Automatic (5-fingered)",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "biped": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Touch",
+        "cost": 5,
+        "effect": "+ touch"
+      },
+      {
+        "name": "Prehensile Feet",
+        "cost": 10,
+        "effect": "Feet as partial hands"
+      }
+    ],
+    "naturalWeapons": [],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "monkey",
+    "name": "Monkey",
+    "category": "Zoo",
+    "sizeLevel": 4,
+    "weight": "5 to 20 pounds",
+    "length": "8 to 20 inches long",
+    "build": "Long",
+    "totalBioE": 45,
+    "attributeBonuses": {
+      "iq": 3,
+      "me": 1,
+      "ma": 1,
+      "pp": 2,
+      "pe": 1,
+      "spd": 2
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "biped": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "Partial Automatic",
+          "cost": 0
+        },
+        {
+          "label": "Full",
+          "cost": 5
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Prehensile Tail",
+        "cost": 10,
+        "effect": "Use as partial hand"
+      },
+      {
+        "name": "Prehensile Feet",
+        "cost": 15,
+        "effect": "Use as partial hand"
+      }
+    ],
+    "naturalWeapons": [],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "feline_jaguar",
+    "name": "Felines \u2014 Jaguar",
+    "category": "Zoo",
+    "sizeLevel": 12,
+    "weight": "to 300 pounds",
+    "length": "4.5-6.5 feet",
+    "build": "Medium",
+    "totalBioE": 20,
+    "attributeBonuses": {
+      "ps": 2,
+      "pp": 6,
+      "pe": 2
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      },
+      {
+        "name": "Nightvision",
+        "cost": 5,
+        "effect": "Nightvision"
+      },
+      {
+        "name": "Swimming",
+        "cost": 10,
+        "effect": "Basic swim 60%"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Retractable Claws",
+        "cost": 10,
+        "damage": "1D8"
+      },
+      {
+        "name": "Retractable Claws",
+        "cost": 15,
+        "damage": "2D6"
+      },
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Teeth",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "feline_lion",
+    "name": "Felines \u2014 Lion",
+    "category": "Zoo",
+    "sizeLevel": 14,
+    "weight": "to 400 pounds",
+    "length": "4.5-6.5 feet",
+    "build": "Medium",
+    "totalBioE": 10,
+    "attributeBonuses": {
+      "ps": 2,
+      "pp": 6,
+      "pe": 2
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      },
+      {
+        "name": "Nightvision",
+        "cost": 5,
+        "effect": "Nightvision"
+      },
+      {
+        "name": "Swimming",
+        "cost": 10,
+        "effect": "Basic swim 60%"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Retractable Claws",
+        "cost": 10,
+        "damage": "1D8"
+      },
+      {
+        "name": "Retractable Claws",
+        "cost": 15,
+        "damage": "2D6"
+      },
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Teeth",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  },
+  {
+    "id": "feline_tiger",
+    "name": "Felines \u2014 Tiger",
+    "category": "Zoo",
+    "sizeLevel": 15,
+    "weight": "to 500 pounds",
+    "length": "6-9.5 feet",
+    "build": "Medium",
+    "totalBioE": 5,
+    "attributeBonuses": {
+      "ps": 4,
+      "pp": 6,
+      "pe": 2
+    },
+    "featureCosts": {
+      "hands": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "biped": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "speech": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ],
+      "looks": [
+        {
+          "label": "None",
+          "cost": 0
+        },
+        {
+          "label": "Partial",
+          "cost": 5
+        },
+        {
+          "label": "Full",
+          "cost": 10
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Advanced Smell",
+        "cost": 5,
+        "effect": "+ smell"
+      },
+      {
+        "name": "Nightvision",
+        "cost": 5,
+        "effect": "Nightvision"
+      },
+      {
+        "name": "Swimming",
+        "cost": 10,
+        "effect": "Basic swim 60%"
+      }
+    ],
+    "naturalWeapons": [
+      {
+        "name": "Retractable Claws",
+        "cost": 10,
+        "damage": "1D8"
+      },
+      {
+        "name": "Retractable Claws",
+        "cost": 15,
+        "damage": "2D6"
+      },
+      {
+        "name": "Teeth",
+        "cost": 5,
+        "damage": "1D8"
+      },
+      {
+        "name": "Teeth",
+        "cost": 10,
+        "damage": "2D6"
+      }
+    ],
+    "notes": "",
+    "variants": []
+  }
+]

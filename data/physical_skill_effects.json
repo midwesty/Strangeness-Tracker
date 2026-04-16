@@ -1,0 +1,87 @@
+{
+  "Acrobatics": {
+    "ps": 1,
+    "ppDice": "1D4",
+    "pe": 1,
+    "sdcDice": "1D6",
+    "roll": 2,
+    "special": [
+      "Leap +4ft high/+5ft long, +2ft/level",
+      "Fearless of heights",
+      "Sense of Balance",
+      "Walk Tightrope/High Wire",
+      "Back Flip",
+      "Climb Rope",
+      "Prowl bonus"
+    ]
+  },
+  "Athletics (general)": {
+    "ps": 1,
+    "spdDice": "1D4",
+    "sdcDice": "1D8",
+    "parry": 1,
+    "dodge": 1,
+    "roll": 1,
+    "bodyBlockStrike": 1,
+    "bodyBlockDamage": "1D4"
+  },
+  "Body Building": {
+    "ps": 2,
+    "sdcFlat": 10
+  },
+  "Boxing": {
+    "psDice": "1D4",
+    "sdcDice": "3D6",
+    "parry": 2,
+    "dodge": 2,
+    "roll": 2,
+    "attacks": 1,
+    "special": [
+      "Automatic knockout on natural 20 (1D6 melees)"
+    ]
+  },
+  "Climbing": {
+    "ps": 1,
+    "pe": 1,
+    "sdcDice": "1D6"
+  },
+  "Gymnastics": {
+    "ps": 2,
+    "ppDice": "1D4",
+    "pe": 1,
+    "sdcDice": "3D6",
+    "roll": 3,
+    "special": [
+      "Leap +4ft high/+4ft long, +2ft/level",
+      "Sense of Balance",
+      "Back Flip",
+      "Climb Rope",
+      "Prowl"
+    ]
+  },
+  "Running": {
+    "pe": 1,
+    "spdDice": "4D4",
+    "sdcDice": "1D6"
+  },
+  "Swimming Advanced": {
+    "ps": 1,
+    "pe": 1,
+    "sdcDice": "1D6",
+    "underwaterDodge": 2,
+    "special": [
+      "Swimming speed bonus 3D4 underwater"
+    ]
+  },
+  "Wrestling": {
+    "ps": 2,
+    "pe": 1,
+    "sdcDice": "4D6",
+    "roll": 2,
+    "special": [
+      "Pin/Incapacitate on 18-20",
+      "Crush/Squeeze 1D4",
+      "Body Block/Tackle 1D4 and knockdown"
+    ]
+  }
+}

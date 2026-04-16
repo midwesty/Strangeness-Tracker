@@ -1,0 +1,1038 @@
+[
+  {
+    "id": "raphael",
+    "name": "Raphael",
+    "template": true,
+    "animalId": "turtle",
+    "alignment": "Anarchist",
+    "age": 15,
+    "sex": "Male",
+    "height": "4ft 6in",
+    "weight": "150 lbs",
+    "level": 6,
+    "sizeLevel": null,
+    "attributes": {
+      "iq": 12,
+      "me": 13,
+      "ma": 11,
+      "ps": 20,
+      "pp": 18,
+      "pe": 20,
+      "pb": 5,
+      "spd": 15
+    },
+    "health": {
+      "hp": 34,
+      "maxHp": 34,
+      "sdc": 151,
+      "maxSdc": 151,
+      "ar": 12
+    },
+    "education": {
+      "label": "Lifelong Martial Arts Training",
+      "scholasticBonus": 0
+    },
+    "skills": {
+      "scholastic": [],
+      "weaponProficiencies": [
+        "W.P. Sai",
+        "W.P. Paired Weapons",
+        "W.P. Blade",
+        "W.P. Chain",
+        "W.P. Blunt",
+        "W.P. Nunchaku",
+        "W.P. Shuriken"
+      ],
+      "physical": [
+        "Hand to Hand Ninjitsu",
+        "Acrobatics",
+        "Athletics (general)",
+        "Body Building",
+        "Boxing",
+        "Climbing",
+        "Gymnastics",
+        "Swimming Advanced",
+        "Wrestling",
+        "Prowl"
+      ],
+      "espionage": [
+        "Escape Artist",
+        "Demolitions Disposal",
+        "Pick Locks",
+        "Wilderness Survival",
+        "Tracking"
+      ],
+      "secondary": []
+    },
+    "powers": [
+      {
+        "name": "Natural Body Armour",
+        "effect": "A.R. 12, S.D.C. 60"
+      },
+      {
+        "name": "Hold Breath",
+        "effect": "10 minutes"
+      }
+    ],
+    "combat": {
+      "attacksPerMelee": 6,
+      "actionsRemaining": 6,
+      "strike": 5,
+      "parry": 7,
+      "dodge": 7,
+      "damage": 5,
+      "roll": 8,
+      "pullPunch": 3,
+      "bodyBlockStrike": 1,
+      "bodyBlockDamage": "1D4",
+      "kickDamage": "1D6",
+      "special": [
+        "Knock-Out/Stun on 18-20",
+        "Critical strike on 17-20",
+        "Body Throw/Flip 1D6"
+      ],
+      "otherAbilities": [
+        "Excellent Balance",
+        "Sense of Direction",
+        "Walk Tightrope 98%",
+        "Leap 14 feet",
+        "Back Flip 98%",
+        "Jump Kick",
+        "Leap Attack"
+      ]
+    },
+    "inventory": {
+      "money": 0,
+      "carried": [
+        {
+          "id": "raphael-sai",
+          "itemId": "sai_pair",
+          "qty": 1,
+          "equipped": true,
+          "questItem": false,
+          "notes": "Special Weapons: Pair of Sai"
+        }
+      ],
+      "stash": []
+    },
+    "notes": "Impulsive, hot tempered, quick to argue, but quick to defend his friends."
+  },
+  {
+    "id": "leonardo",
+    "name": "Leonardo",
+    "template": true,
+    "animalId": "turtle",
+    "alignment": "Scrupulous",
+    "age": 15,
+    "sex": "Male",
+    "height": "4ft 9in",
+    "weight": "150 lbs",
+    "level": 6,
+    "attributes": {
+      "iq": 16,
+      "me": 16,
+      "ma": 17,
+      "ps": 15,
+      "pp": 20,
+      "pe": 18,
+      "pb": 11,
+      "spd": 11
+    },
+    "health": {
+      "hp": 38,
+      "maxHp": 38,
+      "sdc": 130,
+      "maxSdc": 130,
+      "ar": 12
+    },
+    "education": {
+      "label": "Lifelong Martial Arts Training",
+      "scholasticBonus": 0
+    },
+    "skills": {
+      "scholastic": [
+        {
+          "name": "Military Science",
+          "percent": 65
+        },
+        {
+          "name": "History of Japan",
+          "percent": 80
+        },
+        {
+          "name": "History of War",
+          "percent": 75
+        },
+        {
+          "name": "Basic Mathematics",
+          "percent": 90
+        }
+      ],
+      "weaponProficiencies": [
+        "W.P. Daisho",
+        "W.P. Paired Weapons",
+        "W.P. Blunt",
+        "W.P. Chain",
+        "W.P. Staff",
+        "W.P. Ninja Bow",
+        "W.P. Spear",
+        "W.P. Nunchuka",
+        "W.P. Automatic Pistol",
+        "W.P. Shuriken"
+      ],
+      "physical": [
+        "Hand to Hand Ninjitsu",
+        "Athletics (general)",
+        "Body Building",
+        "Boxing",
+        "Climbing",
+        "Gymnastics",
+        "Prowl",
+        "Swimming"
+      ],
+      "espionage": [
+        "Pick Locks",
+        "Tracking"
+      ],
+      "secondary": []
+    },
+    "powers": [
+      {
+        "name": "Natural Body Armour",
+        "effect": "A.R. 12, S.D.C. 60"
+      },
+      {
+        "name": "Hold Breath",
+        "effect": "10 minutes"
+      }
+    ],
+    "combat": {
+      "attacksPerMelee": 6,
+      "actionsRemaining": 6,
+      "strike": 6,
+      "parry": 8,
+      "dodge": 8,
+      "damage": 2,
+      "roll": 7,
+      "pullPunch": 3,
+      "bodyBlockStrike": 1,
+      "bodyBlockDamage": "1D4",
+      "kickDamage": "1D6",
+      "special": [
+        "Knock-Out/Stun on 19-20",
+        "Critical strike on 17-20",
+        "Body Throw/Flip 1D6"
+      ],
+      "otherAbilities": [
+        "Excellent Balance",
+        "Walk Tightrope 98%",
+        "Leap 14 feet",
+        "Back Flip 98%",
+        "Jump Kick",
+        "Leap Attack"
+      ]
+    },
+    "inventory": {
+      "money": 0,
+      "carried": [
+        {
+          "id": "leo-daisho",
+          "itemId": "daisho",
+          "qty": 1,
+          "equipped": true,
+          "questItem": false,
+          "notes": "Special Weapons: Daisho"
+        }
+      ],
+      "stash": []
+    },
+    "notes": "Super straight, clever, fast thinker, excellent strategist and tactician."
+  },
+  {
+    "id": "donatello",
+    "name": "Donatello",
+    "template": true,
+    "animalId": "turtle",
+    "alignment": "Scrupulous",
+    "age": 15,
+    "sex": "Male",
+    "height": "5ft",
+    "weight": "155 lbs",
+    "level": 5,
+    "attributes": {
+      "iq": 19,
+      "me": 15,
+      "ma": 12,
+      "ps": 13,
+      "pp": 17,
+      "pe": 13,
+      "pb": 9,
+      "spd": 10
+    },
+    "health": {
+      "hp": 33,
+      "maxHp": 33,
+      "sdc": 118,
+      "maxSdc": 118,
+      "ar": 12
+    },
+    "education": {
+      "label": "Lifelong Martial Arts Training",
+      "scholasticBonus": 6
+    },
+    "skills": {
+      "scholastic": [
+        {
+          "name": "Automotive Mechanics",
+          "percent": 70
+        },
+        {
+          "name": "Chemistry",
+          "percent": 90
+        },
+        {
+          "name": "Computer Operation",
+          "percent": 90
+        },
+        {
+          "name": "Computer Programming",
+          "percent": 70
+        },
+        {
+          "name": "Computer Repair",
+          "percent": 70
+        },
+        {
+          "name": "Electrical Engineering",
+          "percent": 75
+        },
+        {
+          "name": "Demolitions",
+          "percent": 80
+        },
+        {
+          "name": "Mathematics: Advanced",
+          "percent": 84
+        },
+        {
+          "name": "Mechanical Engineering",
+          "percent": 75
+        }
+      ],
+      "weaponProficiencies": [
+        "W.P. Staff",
+        "W.P. Shuriken"
+      ],
+      "physical": [
+        "Hand to Hand Ninjitsu",
+        "Climbing",
+        "Prowl"
+      ],
+      "espionage": [
+        "Pick Locks",
+        "Surveillance Systems"
+      ],
+      "secondary": [
+        {
+          "name": "Basic Radio",
+          "percent": 80
+        },
+        {
+          "name": "Art (Carpentry)",
+          "percent": 60
+        },
+        {
+          "name": "Photography",
+          "percent": 70
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Natural Body Armour",
+        "effect": "A.R. 12, S.D.C. 60"
+      },
+      {
+        "name": "Hold Breath",
+        "effect": "10 minutes"
+      }
+    ],
+    "combat": {
+      "attacksPerMelee": 5,
+      "actionsRemaining": 5,
+      "strike": 3,
+      "parry": 3,
+      "dodge": 3,
+      "damage": 2,
+      "roll": 3,
+      "pullPunch": 3,
+      "bodyBlockStrike": 1,
+      "bodyBlockDamage": "1D4",
+      "kickDamage": "1D6",
+      "special": [
+        "Knock-Out/Stun on 18-20",
+        "Critical strike on 17-20",
+        "Body Throw/Flip 1D6"
+      ],
+      "otherAbilities": [
+        "Walk Tightrope 80%",
+        "Leap 10 feet",
+        "Back Flip 98%",
+        "Jump Kick",
+        "Leap Attack"
+      ]
+    },
+    "inventory": {
+      "money": 0,
+      "carried": [
+        {
+          "id": "don-bo",
+          "itemId": "bo_staff",
+          "qty": 1,
+          "equipped": true,
+          "questItem": false,
+          "notes": "Special Weapons: Bo Staff"
+        }
+      ],
+      "stash": []
+    },
+    "notes": "Pacifist ninja, gadget-minded, inventive genius."
+  },
+  {
+    "id": "michaelangelo",
+    "name": "Michaelangelo",
+    "template": true,
+    "animalId": "turtle",
+    "alignment": "Scrupulous",
+    "age": 15,
+    "sex": "Male",
+    "height": "4ft 8in",
+    "weight": "150 lbs",
+    "level": 5,
+    "attributes": {
+      "iq": 11,
+      "me": 14,
+      "ma": 19,
+      "ps": 16,
+      "pp": 24,
+      "pe": 17,
+      "pb": 16,
+      "spd": 14
+    },
+    "health": {
+      "hp": 32,
+      "maxHp": 32,
+      "sdc": 142,
+      "maxSdc": 142,
+      "ar": 12
+    },
+    "education": {
+      "label": "Lifelong Martial Arts Training",
+      "scholasticBonus": 0
+    },
+    "skills": {
+      "scholastic": [],
+      "weaponProficiencies": [
+        "W.P. Nunchaku",
+        "W.P. Paired Weapons",
+        "W.P. Blade",
+        "W.P. Chain",
+        "W.P. Blunt",
+        "W.P. Staff",
+        "W.P. Shuriken"
+      ],
+      "physical": [
+        "Hand to Hand Ninjitsu",
+        "Athletics (general)",
+        "Body Building",
+        "Boxing",
+        "Climbing",
+        "Gymnastics",
+        "Prowl",
+        "Swimming"
+      ],
+      "espionage": [
+        "Pick Locks",
+        "Pick Pockets"
+      ],
+      "secondary": [
+        {
+          "name": "Cook",
+          "percent": 85
+        },
+        {
+          "name": "Disguise",
+          "percent": 65
+        },
+        {
+          "name": "Escape Artist",
+          "percent": 55
+        },
+        {
+          "name": "First Aid",
+          "percent": 75
+        },
+        {
+          "name": "Pilot Automobile",
+          "percent": 98
+        },
+        {
+          "name": "Concealment",
+          "percent": 55
+        },
+        {
+          "name": "Detect Concealment",
+          "percent": 65
+        },
+        {
+          "name": "Writing (Creative)",
+          "percent": 58
+        },
+        {
+          "name": "Study, Movies",
+          "percent": 80
+        },
+        {
+          "name": "Study, Science Fiction",
+          "percent": 80
+        },
+        {
+          "name": "Study, Comic Books",
+          "percent": 80
+        }
+      ]
+    },
+    "powers": [
+      {
+        "name": "Natural Body Armour",
+        "effect": "A.R. 12, S.D.C. 60"
+      },
+      {
+        "name": "Hold Breath",
+        "effect": "10 minutes"
+      }
+    ],
+    "combat": {
+      "attacksPerMelee": 5,
+      "actionsRemaining": 5,
+      "strike": 7,
+      "parry": 9,
+      "dodge": 9,
+      "damage": 3,
+      "roll": 5,
+      "pullPunch": 3,
+      "bodyBlockStrike": 1,
+      "bodyBlockDamage": "1D4",
+      "kickDamage": "1D6",
+      "special": [
+        "Knock-Out/Stun on 18-20",
+        "Critical strike on 17-19"
+      ],
+      "otherAbilities": [
+        "Excellent Balance",
+        "Sense of Direction",
+        "Walk Tightrope 98%",
+        "Leap 14 feet",
+        "Back Flip 98%"
+      ]
+    },
+    "inventory": {
+      "money": 0,
+      "carried": [
+        {
+          "id": "mike-nunchaku",
+          "itemId": "nunchaku_pair",
+          "qty": 1,
+          "equipped": true,
+          "questItem": false,
+          "notes": "Special Weapons: Paired Nunchaku"
+        }
+      ],
+      "stash": []
+    },
+    "notes": "Fun-loving, carefree, friendly, likes rough-and-tumble and practical jokes."
+  },
+  {
+    "id": "splinter",
+    "name": "Splinter",
+    "template": true,
+    "animalId": "rodent_rat",
+    "alignment": "Scrupulous",
+    "age": 25,
+    "sex": "Male",
+    "height": "5ft",
+    "weight": "75 lbs",
+    "level": 12,
+    "attributes": {
+      "iq": 12,
+      "me": 14,
+      "ma": 16,
+      "ps": 12,
+      "pp": 15,
+      "pe": 8,
+      "pb": 8,
+      "spd": 8
+    },
+    "health": {
+      "hp": 30,
+      "maxHp": 30,
+      "sdc": 30,
+      "maxSdc": 30,
+      "ar": 0
+    },
+    "education": {
+      "label": "Lifelong Martial Arts Training",
+      "scholasticBonus": 0
+    },
+    "skills": {
+      "scholastic": [],
+      "weaponProficiencies": [
+        "W.P. Daisho",
+        "W.P. Paired Weapons",
+        "W.P. All Ancient Weapons"
+      ],
+      "physical": [
+        "Hand to Hand Ninjitsu",
+        "Climbing",
+        "Prowl"
+      ],
+      "espionage": [],
+      "secondary": [
+        {
+          "name": "Escape Artist",
+          "percent": 98
+        },
+        {
+          "name": "Cook",
+          "percent": 68
+        },
+        {
+          "name": "Pick Locks",
+          "percent": 82
+        },
+        {
+          "name": "Speak Japanese",
+          "percent": 98
+        },
+        {
+          "name": "Study Japanese Literature",
+          "percent": 90
+        },
+        {
+          "name": "Study Japanese Art",
+          "percent": 90
+        },
+        {
+          "name": "Study Japanese Customs",
+          "percent": 98
+        },
+        {
+          "name": "Study Oriental Philosophy",
+          "percent": 80
+        }
+      ]
+    },
+    "powers": [],
+    "combat": {
+      "attacksPerMelee": 5,
+      "actionsRemaining": 5,
+      "strike": 2,
+      "parry": 5,
+      "dodge": 5,
+      "damage": 0,
+      "roll": 2,
+      "pullPunch": 2,
+      "kickDamage": "1D4",
+      "special": [
+        "Knock-Out/Stun on 19-20",
+        "Critical strike on 19-20"
+      ],
+      "otherAbilities": [
+        "Leap 8 feet"
+      ]
+    },
+    "inventory": {
+      "money": 0,
+      "carried": [
+        {
+          "id": "splinter-daisho",
+          "itemId": "daisho",
+          "qty": 1,
+          "equipped": false,
+          "questItem": false,
+          "notes": "Usually carries just a staff."
+        },
+        {
+          "id": "splinter-bo",
+          "itemId": "bo_staff",
+          "qty": 1,
+          "equipped": true,
+          "questItem": false,
+          "notes": "Staff"
+        }
+      ],
+      "stash": []
+    },
+    "notes": "Quiet, contemplative, wry sense of humor. Important note: slowing down in old age."
+  },
+  {
+    "id": "april",
+    "name": "April O'Neil",
+    "template": true,
+    "animalId": null,
+    "alignment": "Principled",
+    "age": 27,
+    "sex": "Female",
+    "height": "5ft 5in",
+    "weight": "115 lbs",
+    "level": 1,
+    "sizeLevel": 8,
+    "attributes": {
+      "iq": 19,
+      "me": 11,
+      "ma": 13,
+      "ps": 13,
+      "pp": 14,
+      "pe": 11,
+      "pb": 14,
+      "spd": 13
+    },
+    "health": {
+      "hp": 17,
+      "maxHp": 17,
+      "sdc": 6,
+      "maxSdc": 6,
+      "ar": 0
+    },
+    "education": {
+      "label": "Master's Degree",
+      "scholasticBonus": 36
+    },
+    "skills": {
+      "scholastic": [
+        {
+          "name": "Biology",
+          "percent": 70
+        },
+        {
+          "name": "Chemistry",
+          "percent": 75
+        },
+        {
+          "name": "Computer Operation",
+          "percent": 95
+        },
+        {
+          "name": "Computer Programming",
+          "percent": 75
+        },
+        {
+          "name": "Intelligence",
+          "percent": 76
+        },
+        {
+          "name": "Photography",
+          "percent": 85
+        },
+        {
+          "name": "Paramedic",
+          "percent": 85
+        },
+        {
+          "name": "Writing (Journalism)",
+          "percent": 68
+        }
+      ],
+      "weaponProficiencies": [],
+      "physical": [
+        "Hand to Hand Basic",
+        "Athletics (general)",
+        "Swimming",
+        "Running"
+      ],
+      "espionage": [],
+      "secondary": [
+        {
+          "name": "Art (Carpentry)",
+          "percent": 46
+        },
+        {
+          "name": "Cook",
+          "percent": 65
+        },
+        {
+          "name": "Dance",
+          "percent": 45
+        },
+        {
+          "name": "Pilot Automobile",
+          "percent": 98
+        },
+        {
+          "name": "Pilot Small Truck",
+          "percent": 98
+        },
+        {
+          "name": "Basic Electronics",
+          "percent": 45
+        },
+        {
+          "name": "Study, Antiques",
+          "percent": 92
+        },
+        {
+          "name": "Study, History",
+          "percent": 85
+        }
+      ]
+    },
+    "powers": [],
+    "combat": {
+      "attacksPerMelee": 2,
+      "actionsRemaining": 2,
+      "strike": 0,
+      "parry": 0,
+      "dodge": 0,
+      "damage": 0,
+      "roll": 2,
+      "pullPunch": 0,
+      "special": [],
+      "otherAbilities": []
+    },
+    "inventory": {
+      "money": 0,
+      "carried": [],
+      "stash": []
+    },
+    "notes": "Cheerful, friendly, concerned about people, hard working."
+  },
+  {
+    "id": "baxter",
+    "name": "Baxter Stockman",
+    "template": true,
+    "animalId": null,
+    "alignment": "Diabolic",
+    "age": 36,
+    "sex": "Male",
+    "height": "5ft 8in",
+    "weight": "175 lbs",
+    "level": 3,
+    "sizeLevel": 9,
+    "attributes": {
+      "iq": 18,
+      "me": 8,
+      "ma": 12,
+      "ps": 14,
+      "pp": 9,
+      "pe": 17,
+      "pb": 12,
+      "spd": 4
+    },
+    "health": {
+      "hp": 23,
+      "maxHp": 23,
+      "sdc": 0,
+      "maxSdc": 0,
+      "ar": 0
+    },
+    "education": {
+      "label": "Doctorate",
+      "scholasticBonus": 45
+    },
+    "skills": {
+      "scholastic": [
+        {
+          "name": "Chemistry",
+          "percent": 98
+        },
+        {
+          "name": "Chemistry, Analytical",
+          "percent": 95
+        },
+        {
+          "name": "Computer Operation",
+          "percent": 98
+        },
+        {
+          "name": "Computer Programming",
+          "percent": 90
+        },
+        {
+          "name": "Computer Repair",
+          "percent": 90
+        },
+        {
+          "name": "Electrical Engineering",
+          "percent": 95
+        },
+        {
+          "name": "Mathematics: Basic",
+          "percent": 98
+        },
+        {
+          "name": "Mathematics: Advanced",
+          "percent": 98
+        },
+        {
+          "name": "Robotics",
+          "percent": 80
+        },
+        {
+          "name": "Pilot Automobile",
+          "percent": 98
+        },
+        {
+          "name": "Cryptography",
+          "percent": 80
+        },
+        {
+          "name": "Laser",
+          "percent": 98
+        },
+        {
+          "name": "Optic Systems",
+          "percent": 98
+        },
+        {
+          "name": "Radio: Basic",
+          "percent": 98
+        },
+        {
+          "name": "Radio: Scrambler",
+          "percent": 98
+        },
+        {
+          "name": "Radio: Satellite",
+          "percent": 75
+        },
+        {
+          "name": "T.V./Video",
+          "percent": 90
+        },
+        {
+          "name": "Read Sensory Equipment",
+          "percent": 90
+        }
+      ],
+      "weaponProficiencies": [],
+      "physical": [],
+      "espionage": [],
+      "secondary": [
+        {
+          "name": "Photography",
+          "percent": 90
+        }
+      ]
+    },
+    "powers": [],
+    "combat": {
+      "attacksPerMelee": 1,
+      "actionsRemaining": 1,
+      "strike": 0,
+      "parry": 0,
+      "dodge": 0,
+      "damage": 0,
+      "roll": 0,
+      "pullPunch": 0,
+      "special": [],
+      "otherAbilities": []
+    },
+    "inventory": {
+      "money": 0,
+      "carried": [],
+      "stash": []
+    },
+    "notes": "Erratic, unpredictable, boastful."
+  },
+  {
+    "id": "casey",
+    "name": "Casey Jones",
+    "template": true,
+    "animalId": null,
+    "alignment": "Aberrant",
+    "age": 22,
+    "sex": "Male",
+    "height": "6ft 1in",
+    "weight": "195 lbs",
+    "level": 3,
+    "sizeLevel": 10,
+    "attributes": {
+      "iq": 8,
+      "me": 6,
+      "ma": 8,
+      "ps": 22,
+      "pp": 20,
+      "pe": 18,
+      "pb": 11,
+      "spd": 8
+    },
+    "health": {
+      "hp": 19,
+      "maxHp": 19,
+      "sdc": 32,
+      "maxSdc": 32,
+      "ar": 0
+    },
+    "education": {
+      "label": "High School drop-out",
+      "scholasticBonus": 0
+    },
+    "skills": {
+      "scholastic": [],
+      "weaponProficiencies": [
+        "W.P. Blunt",
+        "W.P. Revolver",
+        "W.P. Rifle"
+      ],
+      "physical": [
+        "Hand to Hand Martial Arts",
+        "Art (Carpentry)",
+        "Basic Electronics",
+        "Pilot Automobile",
+        "Study, Television",
+        "Study, Criminal Science"
+      ],
+      "espionage": [],
+      "secondary": []
+    },
+    "powers": [],
+    "combat": {
+      "attacksPerMelee": 4,
+      "actionsRemaining": 4,
+      "strike": 6,
+      "parry": 6,
+      "dodge": 6,
+      "damage": 7,
+      "roll": 4,
+      "pullPunch": 0,
+      "bodyBlockStrike": 1,
+      "bodyBlockDamage": "1D4",
+      "kickDamage": "1D8",
+      "special": [],
+      "otherAbilities": []
+    },
+    "inventory": {
+      "money": 0,
+      "carried": [
+        {
+          "id": "casey-blunt",
+          "itemId": "bo_staff",
+          "qty": 1,
+          "equipped": false,
+          "questItem": false,
+          "notes": "Uses sports gear and blunt weapons."
+        },
+        {
+          "id": "casey-revolver",
+          "itemId": "revolver_38",
+          "qty": 1,
+          "equipped": false,
+          "questItem": false,
+          "notes": ""
+        }
+      ],
+      "stash": []
+    },
+    "notes": "Braggart, cocky, cheerful, annoying."
+  }
+]

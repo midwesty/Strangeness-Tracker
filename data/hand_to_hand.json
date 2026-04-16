@@ -1,0 +1,352 @@
+{
+  "basic": {
+    "label": "Hand to Hand Basic",
+    "skillCost": 1,
+    "includes": [
+      "Automatic Parry",
+      "Pull Punch",
+      "Roll with Punch/Fall",
+      "Kick Attack",
+      "Knock-Out/Stun",
+      "Critical Strikes"
+    ],
+    "levels": {
+      "1": {
+        "roll": 2
+      },
+      "2": {
+        "parry": 2,
+        "dodge": 2
+      },
+      "3": {
+        "attacks": 2
+      },
+      "4": {
+        "strike": 2
+      },
+      "5": {
+        "damage": 2
+      },
+      "6": {
+        "kickDamage": "1D6"
+      },
+      "7": {
+        "attacks": 1
+      },
+      "8": {
+        "special": [
+          "Critical strike from behind"
+        ]
+      },
+      "9": {
+        "special": [
+          "Knock-Out/Stun on 19-20"
+        ]
+      },
+      "10": {
+        "parry": 2,
+        "dodge": 2
+      },
+      "11": {
+        "attacks": 1
+      },
+      "12": {
+        "special": [
+          "Critical strike on 19-20"
+        ]
+      },
+      "13": {
+        "roll": 2
+      },
+      "14": {
+        "damage": 2
+      },
+      "15": {
+        "strike": 1
+      }
+    }
+  },
+  "expert": {
+    "label": "Hand to Hand Expert",
+    "skillCost": 2,
+    "includes": [
+      "Automatic Parry",
+      "Pull Punch",
+      "Roll with Punch/Fall",
+      "Kick Attack",
+      "Knock-Out/Stun",
+      "Critical Strikes",
+      "Death Blow"
+    ],
+    "levels": {
+      "1": {
+        "roll": 2
+      },
+      "2": {
+        "attacks": 2
+      },
+      "3": {
+        "parry": 2,
+        "dodge": 2
+      },
+      "4": {
+        "strike": 3
+      },
+      "5": {
+        "kickDamage": "1D6"
+      },
+      "6": {
+        "damage": 3
+      },
+      "7": {
+        "attacks": 1
+      },
+      "8": {
+        "special": [
+          "Knock-Out/Stun on 19-20"
+        ]
+      },
+      "9": {
+        "special": [
+          "Critical strike from behind"
+        ]
+      },
+      "10": {
+        "attacks": 1
+      },
+      "11": {
+        "attacks": 2
+      },
+      "12": {
+        "special": [
+          "Critical strike on 19-20"
+        ]
+      },
+      "13": {
+        "parry": 2,
+        "dodge": 2
+      },
+      "14": {
+        "strike": 2
+      },
+      "15": {
+        "special": [
+          "Death blow on natural 20"
+        ]
+      }
+    }
+  },
+  "martial_arts": {
+    "label": "Hand to Hand Martial Arts",
+    "skillCost": 3,
+    "includes": [
+      "Automatic Parry",
+      "Pull Punch",
+      "Roll with Punch/Fall",
+      "Kick Attack",
+      "Jump Kick",
+      "Knock-Out/Stun",
+      "Critical Strike",
+      "Death Blow",
+      "Leap Attack"
+    ],
+    "levels": {
+      "1": {
+        "parry": 3,
+        "dodge": 3
+      },
+      "2": {
+        "attacks": 2
+      },
+      "3": {
+        "roll": 4
+      },
+      "4": {
+        "kickDamage": "1D8"
+      },
+      "5": {
+        "strike": 3
+      },
+      "6": {
+        "attacks": 1
+      },
+      "7": {
+        "special": [
+          "Knock-Out/Stun on 19-20"
+        ]
+      },
+      "8": {
+        "special": [
+          "Body throw/flip 1D6, victim loses initiative and one attack"
+        ]
+      },
+      "9": {
+        "attacks": 1
+      },
+      "10": {
+        "special": [
+          "Critical strike on 19-20"
+        ]
+      },
+      "11": {
+        "damage": 4
+      },
+      "12": {
+        "parry": 2,
+        "dodge": 2
+      },
+      "13": {
+        "attacks": 1
+      },
+      "14": {
+        "special": [
+          "Death blow on natural 20"
+        ]
+      },
+      "15": {
+        "damage": 2
+      }
+    }
+  },
+  "ninjitsu": {
+    "label": "Hand to Hand Ninjitsu",
+    "skillCost": 3,
+    "includes": [
+      "Automatic Parry",
+      "Pull Punch",
+      "Roll with Punch/Fall",
+      "Kick Attack",
+      "Jump Kick",
+      "Knock-Out/Stun",
+      "Critical Strike",
+      "Death Blow",
+      "Leap Attack"
+    ],
+    "levels": {
+      "1": {
+        "roll": 3
+      },
+      "2": {
+        "parry": 2,
+        "dodge": 2
+      },
+      "3": {
+        "attacks": 2
+      },
+      "4": {
+        "strike": 3
+      },
+      "5": {
+        "special": [
+          "Body throw/flip 1D6, victim loses initiative and one attack"
+        ]
+      },
+      "6": {
+        "attacks": 1
+      },
+      "7": {
+        "special": [
+          "Knock-Out/Stun on 18-20"
+        ]
+      },
+      "8": {
+        "special": [
+          "Critical strike on 17-20"
+        ]
+      },
+      "9": {
+        "parry": 2,
+        "dodge": 2
+      },
+      "10": {
+        "special": [
+          "Critical strike from behind"
+        ]
+      },
+      "11": {
+        "attacks": 1
+      },
+      "12": {
+        "roll": 2
+      },
+      "13": {
+        "special": [
+          "Death blow on natural 20"
+        ]
+      },
+      "14": {
+        "damage": 5
+      },
+      "15": {
+        "roll": 2
+      }
+    }
+  },
+  "assassin": {
+    "label": "Hand to Hand Assassin",
+    "skillCost": 3,
+    "includes": [
+      "Automatic Parry",
+      "Pull Punch",
+      "Roll with Punch/Fall",
+      "Kick Attack",
+      "Knock-Out/Stun",
+      "Critical Strike",
+      "Death Blow"
+    ],
+    "levels": {
+      "1": {
+        "strike": 2
+      },
+      "2": {
+        "attacks": 2
+      },
+      "3": {
+        "roll": 3
+      },
+      "4": {
+        "damage": 4
+      },
+      "5": {
+        "attacks": 1
+      },
+      "6": {
+        "parry": 3,
+        "dodge": 3
+      },
+      "7": {
+        "special": [
+          "Knock-Out/Stun on 17-20"
+        ]
+      },
+      "8": {
+        "attacks": 1
+      },
+      "9": {
+        "kickDamage": "1D6"
+      },
+      "10": {
+        "special": [
+          "Critical strike on 19-20"
+        ]
+      },
+      "11": {
+        "strike": 2
+      },
+      "12": {
+        "special": [
+          "Death blow on natural 20"
+        ]
+      },
+      "13": {
+        "attacks": 1
+      },
+      "14": {
+        "damage": 2
+      },
+      "15": {
+        "strike": 2
+      }
+    }
+  }
+}

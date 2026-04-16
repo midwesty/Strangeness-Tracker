@@ -1,0 +1,296 @@
+[
+  {
+    "id": "random_mutation",
+    "label": "Random Mutation",
+    "cause": "random",
+    "educationType": "wild_table",
+    "notes": "Roll on Wild Animal Education Table."
+  },
+  {
+    "id": "accidental_encounter",
+    "label": "Accidental Encounter",
+    "cause": "accidental",
+    "educationType": "wild_table",
+    "notes": "Roll on Wild Animal Education Table."
+  },
+  {
+    "id": "delib_family",
+    "label": "Adopted and raised as one of researcher's family",
+    "cause": "deliberate",
+    "educationType": "programs",
+    "programSelections": 2,
+    "secondarySelections": 10,
+    "scholasticBonus": 10,
+    "moneyFormula": "3D6*1000",
+    "allowedPrograms": [
+      "communications",
+      "computer",
+      "domestic",
+      "electrical",
+      "journalist",
+      "language",
+      "mechanical",
+      "medical",
+      "physical",
+      "science",
+      "technical",
+      "wp_ancient"
+    ],
+    "startingAccess": "standard"
+  },
+  {
+    "id": "delib_pet_home",
+    "label": "Raised in researcher's home as a pet",
+    "cause": "deliberate",
+    "educationType": "secondary_only",
+    "automaticSkills": [
+      "Mathematics: Basic",
+      "Read/Write Native Language",
+      "Speaks Native Language"
+    ],
+    "secondarySelections": 14,
+    "scholasticBonus": 0,
+    "moneyFormula": "1D6*1000"
+  },
+  {
+    "id": "delib_pet_escaped",
+    "label": "Raised in researcher's home as a pet; escaped hostile",
+    "cause": "deliberate",
+    "educationType": "wild_table",
+    "notes": "Roll education as wild animal character."
+  },
+  {
+    "id": "delib_experiment_cruel",
+    "label": "Brought up as cruel experiment",
+    "cause": "deliberate",
+    "educationType": "mixed_counts",
+    "physicalSelections": 6,
+    "secondarySelections": 12,
+    "moneyFormula": "2D6*500",
+    "notes": "Escaped and hunted by the organization."
+  },
+  {
+    "id": "delib_caged_escape",
+    "label": "Raised as caged experimental animal",
+    "cause": "deliberate",
+    "educationType": "wild_table",
+    "notes": "Escaped and wants to destroy organization."
+  },
+  {
+    "id": "delib_normal_human",
+    "label": "Educated and trained like normal human",
+    "cause": "deliberate",
+    "educationType": "programs",
+    "programSelections": 2,
+    "secondarySelections": 8,
+    "scholasticBonus": 10,
+    "moneyFormula": "2D6*2000",
+    "allowedPrograms": [
+      "communications",
+      "computer",
+      "domestic",
+      "electrical",
+      "journalist",
+      "language",
+      "mechanical",
+      "medical",
+      "physical",
+      "science",
+      "technical",
+      "wp_ancient"
+    ]
+  },
+  {
+    "id": "delib_rescued_friendly",
+    "label": "Rescued from organization and adopted young",
+    "cause": "deliberate",
+    "educationType": "mixed_groups",
+    "scholasticSelections": 4,
+    "scholasticPool": [
+      "communications",
+      "computer",
+      "physical",
+      "pilot_basic",
+      "science",
+      "technical"
+    ],
+    "militarySelections": 3,
+    "militaryPool": [
+      "Concealment",
+      "Detect Ambush",
+      "Detect Concealment",
+      "Disguise",
+      "Escape Artist",
+      "Forgery",
+      "Impersonation",
+      "Interrogation",
+      "Land Navigation",
+      "Palming",
+      "Pick Locks",
+      "Pick Pockets",
+      "Tracking",
+      "Wilderness Survival",
+      "Demolitions",
+      "Demolitions Disposal",
+      "Pilot Tank"
+    ],
+    "secondarySelections": 10,
+    "scholasticBonus": 8,
+    "moneyFormula": "2D6*200"
+  },
+  {
+    "id": "delib_specialist_employee",
+    "label": "Highly trained and educated specialist employee",
+    "cause": "deliberate",
+    "educationType": "programs",
+    "programSelections": 3,
+    "secondarySelections": 10,
+    "scholasticBonus": 25,
+    "moneyFormula": "1D6*10000",
+    "allowedPrograms": [
+      "communications",
+      "computer",
+      "domestic",
+      "electrical",
+      "journalist",
+      "language",
+      "mechanical",
+      "medical",
+      "physical",
+      "science",
+      "technical",
+      "wp_ancient",
+      "pilot_advanced"
+    ]
+  },
+  {
+    "id": "delib_specialist_slave",
+    "label": "Highly trained specialist slave who escaped",
+    "cause": "deliberate",
+    "educationType": "programs",
+    "programSelections": 3,
+    "secondarySelections": 8,
+    "scholasticBonus": 15,
+    "moneyFormula": "3D6*10000",
+    "allowedPrograms": [
+      "communications",
+      "computer",
+      "domestic",
+      "electrical",
+      "journalist",
+      "language",
+      "mechanical",
+      "medical",
+      "physical",
+      "science",
+      "technical",
+      "wp_ancient",
+      "pilot_advanced"
+    ]
+  },
+  {
+    "id": "delib_assassin",
+    "label": "Raised as assassin/warrior",
+    "cause": "deliberate",
+    "educationType": "assassin",
+    "secondarySelections": 8,
+    "scholasticBonus": 0,
+    "combatStyleOptions": [
+      "expert",
+      "martial_arts",
+      "assassin"
+    ],
+    "militaryBonus": 15,
+    "moneyFormula": "1D6*20000",
+    "notes": "Escaped organization with equipment and weapons."
+  },
+  {
+    "id": "wild_self_taught",
+    "label": "Wild Education: Everything self-taught",
+    "cause": "wild_table",
+    "wildTableRange": "01-20",
+    "educationType": "preset",
+    "automaticSkills": [
+      "Prowl",
+      "Wilderness Survival",
+      "Escape Artist",
+      "Climbing",
+      "Swimming"
+    ],
+    "skillOverrides": {
+      "Prowl": 24,
+      "Wilderness Survival": 24,
+      "Escape Artist": 10,
+      "Climbing": 15,
+      "Swimming": 10
+    },
+    "secondarySelections": 1,
+    "attributeBonuses": {
+      "sdcPercent": 10,
+      "pe": 6,
+      "ps": 3,
+      "pp": 2
+    },
+    "extraAttacks": 2,
+    "moneyFormula": "3D6*100"
+  },
+  {
+    "id": "wild_skulking",
+    "label": "Wild Education: Skulking on society fringes",
+    "cause": "wild_table",
+    "wildTableRange": "21-40",
+    "educationType": "preset",
+    "automaticSkills": [
+      "Prowl",
+      "Hand to Hand Basic"
+    ],
+    "skillOverrides": {
+      "Prowl": 12
+    },
+    "secondarySelections": 14,
+    "attributeBonuses": {
+      "pp": 1
+    },
+    "moneyFormula": "3D6*200"
+  },
+  {
+    "id": "wild_mentor",
+    "label": "Wild Education: Adopted by mentor",
+    "cause": "wild_table",
+    "wildTableRange": "41-90",
+    "educationType": "mentor",
+    "militarySelections": 3,
+    "secondarySelections": 10,
+    "scholasticBonus": 5,
+    "automaticSkills": [
+      "Hand to Hand Ninjitsu"
+    ],
+    "wpAncientSelections": 3,
+    "moneyFormula": "3D6*100"
+  },
+  {
+    "id": "wild_public_university",
+    "label": "Wild Education: Public and university educated",
+    "cause": "wild_table",
+    "wildTableRange": "91-00",
+    "educationType": "programs",
+    "programSelections": 3,
+    "secondarySelections": 10,
+    "scholasticBonus": 20,
+    "allowedPrograms": [
+      "communications",
+      "computer",
+      "domestic",
+      "electrical",
+      "journalist",
+      "language",
+      "mechanical",
+      "medical",
+      "physical",
+      "science",
+      "technical",
+      "wp_ancient"
+    ],
+    "moneyFormula": "2D6*500"
+  }
+]
