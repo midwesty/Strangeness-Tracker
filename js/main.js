@@ -39,6 +39,7 @@ const appEl = document.getElementById('app');
 const modalEl = document.getElementById('modal');
 const importCharacterFileEl = document.getElementById('import-character-file');
 const importLibraryFileEl = document.getElementById('import-library-file');
+const avatarFileEl = document.getElementById('character-avatar-file');
 
 const state = {
   view: 'home',
@@ -49,7 +50,8 @@ const state = {
   customLibrary: loadCustomLibrary(),
   diceLog: loadDiceLog(),
   modalContext: null,
-  validation: { errors: [], warnings: [], bio: { spent: 0, budget: 0, remaining: 0 } }
+  validation: { errors: [], warnings: [], bio: { spent: 0, budget: 0, remaining: 0 } },
+  sheetTab: 'overview'
 };
 
 async function loadData() {
@@ -116,6 +118,56 @@ function setByPath(target, path, rawValue, type = 'text', checked = false) {
   cursor[last] = value;
 }
 
+function getByPath(target, path, fallback = undefined) {
+  const keys = String(path || '').split('.').filter(Boolean);
+  let cursor = target;
+  for (const key of keys) {
+    if (cursor == null || !(key in cursor)) return fallback;
+    cursor = cursor[key];
+  }
+  return cursor;
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function maxActionsFor(character) {
+  return Math.max(0, Number(character?.combat?.actionsPerMelee ?? character?.combat?.actionsRemaining ?? 0));
+}
+
+function resetMeleeState(character) {
+  character.combat = character.combat || {};
+  character.combat.actionsPerMelee = maxActionsFor(character);
+  character.combat.actionsRemaining = maxActionsFor(character);
+}
+
+function resetCombatState(character) {
+  resetMeleeState(character);
+  character.combat.currentInitiative = '';
+}
+
+function adjustResource(character, path, delta, maxPath = null) {
+  const current = Number(getByPath(character, path, 0) || 0);
+  const maxValue = maxPath ? Number(getByPath(character, maxPath, current) || current) : Number.POSITIVE_INFINITY;
+  const next = clamp(current + delta, 0, maxValue);
+  setByPath(character, path, next, 'number');
+}
+
+function setResourceToMax(character, path, maxPath) {
+  const maxValue = Number(getByPath(character, maxPath, 0) || 0);
+  setByPath(character, path, maxValue, 'number');
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result || ''));
+    reader.onerror = () => reject(reader.error || new Error('Could not read file.'));
+    reader.readAsDataURL(file);
+  });
+}
+
 function currentCharacterRecord() {
   return state.characters.find((character) => character.id === state.activeCharacter?.id);
 }
@@ -171,6 +223,7 @@ function openCharacter(id) {
   const character = state.characters.find((item) => item.id === id);
   if (!character) return;
   state.activeCharacter = deepClone(character);
+  state.sheetTab = 'overview';
   state.view = 'sheet';
   render();
 }
@@ -195,6 +248,19 @@ function updateBuilderField(path, value, type = 'text', checked = false) {
 function updateCharacterField(path, value, type = 'text', checked = false) {
   pushHistory(state.activeCharacter);
   setByPath(state.activeCharacter, path, value, type, checked);
+  if (path === 'health.hp') {
+    state.activeCharacter.health.hp = clamp(Number(state.activeCharacter.health.hp || 0), 0, Number(state.activeCharacter.health.maxHp || state.activeCharacter.health.hp || 0));
+  }
+  if (path === 'health.sdc') {
+    state.activeCharacter.health.sdc = clamp(Number(state.activeCharacter.health.sdc || 0), 0, Number(state.activeCharacter.health.maxSdc || state.activeCharacter.health.sdc || 0));
+  }
+  if (path === 'combat.actionsRemaining') {
+    state.activeCharacter.combat.actionsRemaining = clamp(Number(state.activeCharacter.combat.actionsRemaining || 0), 0, maxActionsFor(state.activeCharacter));
+  }
+  if (path === 'combat.actionsPerMelee') {
+    state.activeCharacter.combat.actionsPerMelee = Math.max(0, Number(state.activeCharacter.combat.actionsPerMelee || 0));
+    state.activeCharacter.combat.actionsRemaining = clamp(Number(state.activeCharacter.combat.actionsRemaining || 0), 0, maxActionsFor(state.activeCharacter));
+  }
   if (path.startsWith('level')) {
     // Level changes do not auto-rebuild from raw builder; user can edit directly or reopen builder.
   }
@@ -400,6 +466,7 @@ document.addEventListener('click', async (event) => {
     if (!template) return;
     const character = createCharacterFromTemplate(template);
     upsertActiveCharacter(character);
+    state.sheetTab = 'overview';
     state.view = 'sheet';
     render();
     return;
@@ -483,6 +550,11 @@ document.addEventListener('click', async (event) => {
     render();
     return;
   }
+  if (action === 'set-sheet-tab') {
+    state.sheetTab = button.dataset.tab || 'overview';
+    render();
+    return;
+  }
   if (action === 'undo') {
     const record = currentCharacterRecord() || state.activeCharacter;
     if (!record?.history?.undoStack?.length) return;
@@ -511,23 +583,61 @@ document.addEventListener('click', async (event) => {
   }
   if (action === 'reset-melee') {
     pushHistory(state.activeCharacter);
-    state.activeCharacter.combat.actionsRemaining = state.activeCharacter.combat.actionsPerMelee;
+    resetMeleeState(state.activeCharacter);
     upsertActiveCharacter(state.activeCharacter);
     render();
     return;
   }
   if (action === 'spend-action') {
     pushHistory(state.activeCharacter);
-    state.activeCharacter.combat.actionsRemaining = Math.max(0, Number(state.activeCharacter.combat.actionsRemaining || 0) - 1);
+    state.activeCharacter.combat.actionsRemaining = clamp(Number(state.activeCharacter.combat.actionsRemaining || 0) - 1, 0, maxActionsFor(state.activeCharacter));
     upsertActiveCharacter(state.activeCharacter);
     render();
     return;
   }
   if (action === 'reset-combat') {
     pushHistory(state.activeCharacter);
-    state.activeCharacter.combat.actionsRemaining = state.activeCharacter.combat.actionsPerMelee;
-    state.activeCharacter.combat.currentInitiative = '';
-    state.activeCharacter.statuses = [];
+    resetCombatState(state.activeCharacter);
+    upsertActiveCharacter(state.activeCharacter);
+    render();
+    return;
+  }
+  if (action === 'full-heal') {
+    pushHistory(state.activeCharacter);
+    setResourceToMax(state.activeCharacter, 'health.hp', 'health.maxHp');
+    setResourceToMax(state.activeCharacter, 'health.sdc', 'health.maxSdc');
+    upsertActiveCharacter(state.activeCharacter);
+    render();
+    return;
+  }
+  if (action === 'adjust-resource') {
+    pushHistory(state.activeCharacter);
+    const resource = button.dataset.resource;
+    const delta = Number(button.dataset.delta || 0);
+    if (resource === 'hp') adjustResource(state.activeCharacter, 'health.hp', delta, 'health.maxHp');
+    if (resource === 'sdc') adjustResource(state.activeCharacter, 'health.sdc', delta, 'health.maxSdc');
+    if (resource === 'actions') adjustResource(state.activeCharacter, 'combat.actionsRemaining', delta, 'combat.actionsPerMelee');
+    upsertActiveCharacter(state.activeCharacter);
+    render();
+    return;
+  }
+  if (action === 'resource-to-max') {
+    pushHistory(state.activeCharacter);
+    const resource = button.dataset.resource;
+    if (resource === 'hp') setResourceToMax(state.activeCharacter, 'health.hp', 'health.maxHp');
+    if (resource === 'sdc') setResourceToMax(state.activeCharacter, 'health.sdc', 'health.maxSdc');
+    if (resource === 'actions') setResourceToMax(state.activeCharacter, 'combat.actionsRemaining', 'combat.actionsPerMelee');
+    upsertActiveCharacter(state.activeCharacter);
+    render();
+    return;
+  }
+  if (action === 'open-avatar-upload') {
+    avatarFileEl?.click();
+    return;
+  }
+  if (action === 'remove-avatar') {
+    pushHistory(state.activeCharacter);
+    delete state.activeCharacter.avatarDataUrl;
     upsertActiveCharacter(state.activeCharacter);
     render();
     return;
@@ -728,6 +838,7 @@ importCharacterFileEl.addEventListener('change', async () => {
     character.id = character.id || uid('char');
     character.history = character.history || { undoStack: [], redoStack: [] };
     upsertActiveCharacter(character);
+    state.sheetTab = 'overview';
     state.view = 'sheet';
     render();
   } catch (error) {
@@ -754,6 +865,22 @@ importLibraryFileEl.addEventListener('change', async () => {
     openModal(renderPromptModal({ title: 'Library import failed', body: `<div class="notice bad">${error.message}</div>`, primaryLabel: 'Close', action: 'close-modal', cancelLabel: 'Close' }));
   } finally {
     importLibraryFileEl.value = '';
+  }
+});
+
+avatarFileEl?.addEventListener('change', async () => {
+  const file = avatarFileEl.files?.[0];
+  if (!file || !state.activeCharacter) return;
+  try {
+    const dataUrl = await readFileAsDataUrl(file);
+    pushHistory(state.activeCharacter);
+    state.activeCharacter.avatarDataUrl = dataUrl;
+    upsertActiveCharacter(state.activeCharacter);
+    render();
+  } catch (error) {
+    openModal(renderPromptModal({ title: 'Avatar import failed', body: `<div class="notice bad">${error.message}</div>`, primaryLabel: 'Close', action: 'close-modal', cancelLabel: 'Close' }));
+  } finally {
+    avatarFileEl.value = '';
   }
 });
 

@@ -391,6 +391,7 @@ function inventoryRows(entries, data, location) {
   }).join('');
 }
 
+
 function attackCards(character, data) {
   const itemMap = new Map(data.allItems.map((item) => [item.id, item]));
   const equipped = (character.inventory?.carried || []).filter((entry) => entry.equipped);
@@ -418,116 +419,284 @@ function attackCards(character, data) {
   return cards.join('');
 }
 
+function getInitials(name) {
+  const parts = String(name || '').trim().split(/\s+/).filter(Boolean).slice(0, 2);
+  if (!parts.length) return 'ST';
+  return parts.map((part) => part[0]?.toUpperCase() || '').join('');
+}
+
+function renderSheetTabButton(id, label, activeTab) {
+  return `<button class="tab ${activeTab === id ? 'active' : ''}" data-action="set-sheet-tab" data-tab="${id}">${escapeHtml(label)}</button>`;
+}
+
+function renderMiniMeter({ label, current, max, resource, extraLabel = '' }) {
+  const maxText = max != null ? `/${escapeHtml(max)}` : '';
+  return `
+    <div class="mini-meter">
+      <div class="mini-meter-label">${escapeHtml(label)}</div>
+      <div class="mini-meter-value">${escapeHtml(current)}${maxText}</div>
+      ${extraLabel ? `<div class="mini-meter-sub">${escapeHtml(extraLabel)}</div>` : ''}
+      ${resource ? `
+        <div class="mini-meter-controls no-print">
+          <button class="mini-btn" data-action="adjust-resource" data-resource="${resource}" data-delta="-1">−</button>
+          <button class="mini-btn" data-action="adjust-resource" data-resource="${resource}" data-delta="1">+</button>
+          <button class="mini-btn mini-btn-wide" data-action="resource-to-max" data-resource="${resource}">Max</button>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function renderSheetPanel(id, activeTab, title, content) {
+  return `
+    <section class="sheet-panel ${activeTab === id ? 'active' : ''}" data-tab-panel="${id}">
+      <div class="section-title"><h3>${escapeHtml(title)}</h3></div>
+      ${content}
+    </section>
+  `;
+}
+
+function renderCombatGuide(character) {
+  const helpers = [
+    { label: 'Strike', detail: `Roll d20 + ${character.combat.strike}` },
+    { label: 'Parry', detail: `Roll d20 + ${character.combat.parry}` },
+    { label: 'Dodge', detail: `Roll d20 + ${character.combat.dodge}` },
+    { label: 'Roll with punch/fall', detail: `Roll d20 + ${character.combat.roll}` },
+    { label: 'Pull punch', detail: `Roll d20 + ${character.combat.pullPunch}` },
+    { label: 'Body block / tackle', detail: `Strike d20 + ${character.combat.bodyBlockStrike || 0} · Damage ${escapeHtml(character.combat.bodyBlockDamage || '1D4')}` },
+    { label: 'Kick', detail: `Base kick damage ${escapeHtml(character.combat.kickDamage || '1D6')} + ${character.combat.damage}` },
+    { label: 'Damage bonus', detail: `Add +${character.combat.damage} where applicable` }
+  ];
+  return helpers.map((entry) => `
+    <div class="item-card">
+      <strong>${escapeHtml(entry.label)}</strong>
+      <div class="muted small">${escapeHtml(entry.detail)}</div>
+    </div>
+  `).join('');
+}
+
 export function renderSheet(state, data) {
   const character = state.activeCharacter;
+  const activeTab = state.sheetTab || 'overview';
   const carriedWeight = totalCarriedWeight(character.inventory?.carried || [], data.allItems);
-  const encumbered = carriedWeight > Number(character.derived?.carry?.carry || 0);
+  const carryCapacity = Number(character.derived?.carry?.carry || 0);
+  const encumbered = carriedWeight > carryCapacity;
   const allStatuses = data.allStatuses;
+  const activeStatuses = allStatuses.filter((status) => character.statuses.includes(status.id));
 
-  return `
-    <section class="section">
-      <div class="section-title no-print">
+  const header = `
+    <div class="sheet-toolbar no-print">
+      <div class="btn-row">
+        <button class="btn" data-action="home">Home</button>
+        <button class="btn" data-action="open-character-builder" data-id="${character.id}">Edit in builder</button>
+        <button class="btn" data-action="undo">Undo</button>
+        <button class="btn" data-action="redo">Redo</button>
+        <button class="btn" data-action="save-character">Save</button>
+        <button class="btn" data-action="export-active-character">JSON</button>
+        <button class="btn btn-secondary" data-action="print-sheet">Print / PDF</button>
+      </div>
+    </div>
+
+    <div class="sheet-hero">
+      <div class="sheet-avatar-card">
+        <div class="avatar-frame">
+          ${character.avatarDataUrl
+            ? `<img src="${escapeHtml(character.avatarDataUrl)}" alt="${escapeHtml(character.name)} avatar" class="avatar-image" />`
+            : `<div class="avatar-placeholder">${escapeHtml(getInitials(character.name))}</div>`}
+        </div>
+        <div class="btn-row no-print sheet-avatar-actions">
+          <button class="btn" data-action="open-avatar-upload">Upload</button>
+          ${character.avatarDataUrl ? `<button class="btn btn-danger" data-action="remove-avatar">Remove</button>` : ''}
+        </div>
+      </div>
+
+      <div class="sheet-hero-main">
         <div>
           <div class="kicker">Character sheet</div>
           <h2>${escapeHtml(character.name)}</h2>
           <div class="muted small">${escapeHtml(character.animalName || 'Human / template')} · Level ${escapeHtml(character.level)} · ${escapeHtml(character.alignment || '—')}</div>
         </div>
-        <div class="btn-row">
-          <button class="btn" data-action="home">Home</button>
-          <button class="btn" data-action="open-character-builder" data-id="${character.id}">Edit in builder</button>
-          <button class="btn" data-action="undo">Undo</button>
-          <button class="btn" data-action="redo">Redo</button>
-          <button class="btn" data-action="save-character">Save</button>
-          <button class="btn" data-action="export-active-character">JSON</button>
-          <button class="btn btn-secondary" data-action="print-sheet">Print / PDF</button>
+
+        <div class="sheet-status-summary">
+          ${activeStatuses.length
+            ? activeStatuses.map((status) => `<span class="pill warn">${escapeHtml(status.label)}</span>`).join('')
+            : '<span class="pill">No active conditions</span>'}
+        </div>
+
+        <div class="sheet-mini-grid">
+          <div class="mini-meter"><div class="mini-meter-label">A.R.</div><div class="mini-meter-value">${escapeHtml(character.health.ar || 0)}</div></div>
+          ${renderMiniMeter({ label: 'HP', current: character.health.hp, max: character.health.maxHp, resource: 'hp' })}
+          ${renderMiniMeter({ label: 'S.D.C.', current: character.health.sdc, max: character.health.maxSdc, resource: 'sdc' })}
+          ${renderMiniMeter({ label: 'Actions', current: character.combat.actionsRemaining, max: character.combat.actionsPerMelee, resource: 'actions', extraLabel: character.combat.currentInitiative ? `Init ${character.combat.currentInitiative}` : '' })}
+          <div class="mini-meter">
+            <div class="mini-meter-label">Carry</div>
+            <div class="mini-meter-value">${escapeHtml(carriedWeight)}/${escapeHtml(carryCapacity)}</div>
+            <div class="mini-meter-sub ${encumbered ? 'text-bad' : ''}">${encumbered ? 'Encumbered' : 'Within limit'}</div>
+          </div>
+        </div>
+
+        <div class="btn-row no-print sheet-quick-actions">
+          <button class="btn" data-action="spend-action">Use 1 action</button>
+          <button class="btn" data-action="reset-melee">Reset melee</button>
+          <button class="btn" data-action="reset-combat">Reset combat</button>
+          <button class="btn btn-secondary" data-action="full-heal">Full heal</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet-tabs no-print">
+      ${renderSheetTabButton('overview', 'Overview', activeTab)}
+      ${renderSheetTabButton('combat', 'Actions / Combat', activeTab)}
+      ${renderSheetTabButton('skills', 'Skills', activeTab)}
+      ${renderSheetTabButton('inventory', 'Inventory', activeTab)}
+      ${renderSheetTabButton('notes', 'Notes', activeTab)}
+    </div>
+  `;
+
+  const overviewContent = `
+    <div class="grid">
+      <div class="builder-step">
+        <div class="section-title"><h4>Core details</h4></div>
+        <div class="grid grid-4">
+          <label class="field"><span>Name</span><input type="text" data-char-field="name" value="${escapeHtml(character.name)}" /></label>
+          <label class="field"><span>Alignment</span><select data-char-field="alignment">${optionList(ALIGNMENTS, character.alignment)}</select></label>
+          <label class="field"><span>Age</span><input type="number" data-char-field="age" value="${escapeHtml(character.age)}" /></label>
+          <label class="field"><span>Sex</span><input type="text" data-char-field="sex" value="${escapeHtml(character.sex)}" /></label>
+          <label class="field"><span>Level</span><input type="number" min="1" max="15" data-char-field="level" value="${escapeHtml(character.level)}" /></label>
+          <label class="field"><span>Money</span><input type="number" data-char-field="inventory.money" value="${escapeHtml(character.inventory.money || 0)}" /></label>
+          <label class="field"><span>Initiative</span><input type="text" data-char-field="combat.currentInitiative" value="${escapeHtml(character.combat.currentInitiative || '')}" /></label>
+          <label class="check-chip"><input type="checkbox" data-char-field="gmOverride" ${character.gmOverride ? 'checked' : ''} /><span>GM Override</span></label>
         </div>
       </div>
 
-      <div class="summary-grid">
-        <div class="summary-card"><div class="muted tiny">HP</div><div class="value">${escapeHtml(character.health.hp)}/${escapeHtml(character.health.maxHp)}</div></div>
-        <div class="summary-card"><div class="muted tiny">S.D.C.</div><div class="value">${escapeHtml(character.health.sdc)}/${escapeHtml(character.health.maxSdc)}</div></div>
-        <div class="summary-card"><div class="muted tiny">A.R.</div><div class="value">${escapeHtml(character.health.ar || 0)}</div></div>
-        <div class="summary-card"><div class="muted tiny">Actions / melee</div><div class="value">${escapeHtml(character.combat.actionsRemaining)}/${escapeHtml(character.combat.actionsPerMelee)}</div></div>
+      <div class="builder-step">
+        <div class="section-title"><h4>Attributes</h4></div>
+        <div class="grid grid-4">
+          ${['iq','me','ma','ps','pp','pe','pb','spd'].map((key) => `
+            <label class="field"><span>${key.toUpperCase()}</span><input type="number" data-char-field="attributes.${key}" value="${escapeHtml(character.attributes[key])}" /></label>
+          `).join('')}
+        </div>
       </div>
 
-      <div class="grid" style="margin-top:12px;">
-        <div class="builder-step">
-          <div class="section-title"><h3>Core</h3><div class="btn-row no-print"><button class="btn" data-action="reset-melee">Reset melee</button><button class="btn" data-action="spend-action">Use 1 action</button><button class="btn" data-action="reset-combat">Reset combat</button></div></div>
-          <div class="grid grid-4">
-            <label class="field"><span>Name</span><input type="text" data-char-field="name" value="${escapeHtml(character.name)}" /></label>
-            <label class="field"><span>Alignment</span><select data-char-field="alignment">${optionList(ALIGNMENTS, character.alignment)}</select></label>
-            <label class="field"><span>Age</span><input type="number" data-char-field="age" value="${escapeHtml(character.age)}" /></label>
-            <label class="field"><span>Sex</span><input type="text" data-char-field="sex" value="${escapeHtml(character.sex)}" /></label>
-            <label class="field"><span>Level</span><input type="number" min="1" max="15" data-char-field="level" value="${escapeHtml(character.level)}" /></label>
-            <label class="field"><span>Initiative</span><input type="text" data-char-field="combat.currentInitiative" value="${escapeHtml(character.combat.currentInitiative || '')}" /></label>
-            <label class="field"><span>Money</span><input type="number" data-char-field="inventory.money" value="${escapeHtml(character.inventory.money || 0)}" /></label>
-            <label class="check-chip"><input type="checkbox" data-char-field="gmOverride" ${character.gmOverride ? 'checked' : ''} /><span>GM Override</span></label>
-          </div>
-          <div class="grid grid-4" style="margin-top:10px;">
-            ${['iq','me','ma','ps','pp','pe','pb','spd'].map((key) => `
-              <label class="field"><span>${key.toUpperCase()}</span><input type="number" data-char-field="attributes.${key}" value="${escapeHtml(character.attributes[key])}" /></label>
-            `).join('')}
-          </div>
+      <div class="builder-step">
+        <div class="section-title"><h4>Health, capacity, and conditions</h4></div>
+        <div class="grid grid-4">
+          <label class="field"><span>HP current</span><input type="number" data-char-field="health.hp" value="${escapeHtml(character.health.hp)}" /></label>
+          <label class="field"><span>HP max</span><input type="number" data-char-field="health.maxHp" value="${escapeHtml(character.health.maxHp)}" /></label>
+          <label class="field"><span>S.D.C. current</span><input type="number" data-char-field="health.sdc" value="${escapeHtml(character.health.sdc)}" /></label>
+          <label class="field"><span>S.D.C. max</span><input type="number" data-char-field="health.maxSdc" value="${escapeHtml(character.health.maxSdc)}" /></label>
+          <label class="field"><span>A.R.</span><input type="number" data-char-field="health.ar" value="${escapeHtml(character.health.ar)}" /></label>
+          <label class="field"><span>Carry capacity</span><input type="number" data-char-field="derived.carry.carry" value="${escapeHtml(character.derived?.carry?.carry || 0)}" /></label>
+          <label class="field"><span>Lift capacity</span><input type="number" data-char-field="derived.carry.lift" value="${escapeHtml(character.derived?.carry?.lift || 0)}" /></label>
+          <label class="field"><span>Speed yards / minute</span><input type="number" data-char-field="derived.speedYardsPerMinute" value="${escapeHtml(character.derived?.speedYardsPerMinute || 0)}" /></label>
         </div>
+        <div class="inline-checks" style="margin-top:10px;">
+          ${allStatuses.map((status) => `
+            <label class="check-chip">
+              <input type="checkbox" data-action="char-status" value="${escapeHtml(status.id)}" ${character.statuses.includes(status.id) ? 'checked' : ''} />
+              <span>${escapeHtml(status.label)}</span>
+            </label>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
 
-        <div class="builder-step">
-          <div class="section-title"><h3>Health, conditions, and capacity</h3><div class="stat-pills"><span class="pill ${encumbered ? 'bad' : 'good'}">Weight ${carriedWeight}/${character.derived?.carry?.carry || 0}</span></div></div>
-          <div class="grid grid-4">
-            <label class="field"><span>HP current</span><input type="number" data-char-field="health.hp" value="${escapeHtml(character.health.hp)}" /></label>
-            <label class="field"><span>HP max</span><input type="number" data-char-field="health.maxHp" value="${escapeHtml(character.health.maxHp)}" /></label>
-            <label class="field"><span>S.D.C. current</span><input type="number" data-char-field="health.sdc" value="${escapeHtml(character.health.sdc)}" /></label>
-            <label class="field"><span>S.D.C. max</span><input type="number" data-char-field="health.maxSdc" value="${escapeHtml(character.health.maxSdc)}" /></label>
-            <label class="field"><span>A.R.</span><input type="number" data-char-field="health.ar" value="${escapeHtml(character.health.ar)}" /></label>
-            <label class="field"><span>Actions remaining</span><input type="number" data-char-field="combat.actionsRemaining" value="${escapeHtml(character.combat.actionsRemaining)}" /></label>
-            <label class="field"><span>Carry capacity</span><input type="number" data-char-field="derived.carry.carry" value="${escapeHtml(character.derived?.carry?.carry || 0)}" /></label>
-            <label class="field"><span>Lift capacity</span><input type="number" data-char-field="derived.carry.lift" value="${escapeHtml(character.derived?.carry?.lift || 0)}" /></label>
-          </div>
-          <div class="inline-checks" style="margin-top:10px;">
-            ${allStatuses.map((status) => `
-              <label class="check-chip">
-                <input type="checkbox" data-action="char-status" value="${escapeHtml(status.id)}" ${character.statuses.includes(status.id) ? 'checked' : ''} />
-                <span>${escapeHtml(status.label)}</span>
-              </label>
-            `).join('')}
-          </div>
+  const combatContent = `
+    <div class="grid">
+      <div class="builder-step">
+        <div class="section-title"><h4>Round and melee controls</h4><div class="btn-row no-print"><button class="btn" data-action="spend-action">Use 1 action</button><button class="btn" data-action="reset-melee">Reset melee</button><button class="btn" data-action="reset-combat">Reset combat</button></div></div>
+        <div class="grid grid-4">
+          <label class="field"><span>Actions per melee</span><input type="number" data-char-field="combat.actionsPerMelee" value="${escapeHtml(character.combat.actionsPerMelee)}" /></label>
+          <label class="field"><span>Actions remaining</span><input type="number" data-char-field="combat.actionsRemaining" value="${escapeHtml(character.combat.actionsRemaining)}" /></label>
+          <label class="field"><span>Initiative</span><input type="text" data-char-field="combat.currentInitiative" value="${escapeHtml(character.combat.currentInitiative || '')}" /></label>
+          <label class="field"><span>Hand to hand style</span><input type="text" data-char-field="combat.handToHandStyle" value="${escapeHtml(character.combat.handToHandStyle || '')}" /></label>
         </div>
+      </div>
 
-        <div class="builder-step">
-          <div class="section-title"><h3>Combat helper</h3></div>
-          <div class="grid grid-4">
-            <label class="field"><span>Strike bonus</span><input type="number" data-char-field="combat.strike" value="${escapeHtml(character.combat.strike)}" /></label>
-            <label class="field"><span>Parry bonus</span><input type="number" data-char-field="combat.parry" value="${escapeHtml(character.combat.parry)}" /></label>
-            <label class="field"><span>Dodge bonus</span><input type="number" data-char-field="combat.dodge" value="${escapeHtml(character.combat.dodge)}" /></label>
-            <label class="field"><span>Damage bonus</span><input type="number" data-char-field="combat.damage" value="${escapeHtml(character.combat.damage)}" /></label>
-            <label class="field"><span>Roll with punch/fall</span><input type="number" data-char-field="combat.roll" value="${escapeHtml(character.combat.roll)}" /></label>
-            <label class="field"><span>Pull punch</span><input type="number" data-char-field="combat.pullPunch" value="${escapeHtml(character.combat.pullPunch)}" /></label>
-            <label class="field"><span>Kick damage</span><input type="text" data-char-field="combat.kickDamage" value="${escapeHtml(character.combat.kickDamage || '')}" /></label>
-            <label class="field"><span>Hand to hand style</span><input type="text" data-char-field="combat.handToHandStyle" value="${escapeHtml(character.combat.handToHandStyle || '')}" /></label>
-          </div>
-          <div class="grid grid-3" style="margin-top:10px;">
-            ${attackCards(character, data)}
-          </div>
-          ${character.combat.special?.length ? `<div class="notice" style="margin-top:10px;">${character.combat.special.map((s) => `<div>• ${escapeHtml(s)}</div>`).join('')}</div>` : ''}
+      <div class="builder-step">
+        <div class="section-title"><h4>Combat helper</h4></div>
+        <div class="grid grid-4">
+          <label class="field"><span>Strike bonus</span><input type="number" data-char-field="combat.strike" value="${escapeHtml(character.combat.strike)}" /></label>
+          <label class="field"><span>Parry bonus</span><input type="number" data-char-field="combat.parry" value="${escapeHtml(character.combat.parry)}" /></label>
+          <label class="field"><span>Dodge bonus</span><input type="number" data-char-field="combat.dodge" value="${escapeHtml(character.combat.dodge)}" /></label>
+          <label class="field"><span>Damage bonus</span><input type="number" data-char-field="combat.damage" value="${escapeHtml(character.combat.damage)}" /></label>
+          <label class="field"><span>Roll with punch/fall</span><input type="number" data-char-field="combat.roll" value="${escapeHtml(character.combat.roll)}" /></label>
+          <label class="field"><span>Pull punch</span><input type="number" data-char-field="combat.pullPunch" value="${escapeHtml(character.combat.pullPunch)}" /></label>
+          <label class="field"><span>Kick damage</span><input type="text" data-char-field="combat.kickDamage" value="${escapeHtml(character.combat.kickDamage || '')}" /></label>
+          <label class="field"><span>Body block damage</span><input type="text" data-char-field="combat.bodyBlockDamage" value="${escapeHtml(character.combat.bodyBlockDamage || '')}" /></label>
         </div>
+      </div>
 
-        <div class="builder-step">
-          <div class="section-title"><h3>Skills</h3><div class="btn-row no-print"><button class="btn" data-action="add-manual-skill">Add manual skill</button></div></div>
-          <div class="table-wrap"><table><thead><tr><th>Automatic skill</th><th>Category</th><th>%</th><th>Source</th><th>Action</th></tr></thead><tbody>${skillRows(character.skills.automatic, 'automatic')}</tbody></table></div>
-          <div class="table-wrap" style="margin-top:10px;"><table><thead><tr><th>Scholastic skill</th><th>Category</th><th>%</th><th>Program</th><th>Action</th></tr></thead><tbody>${skillRows(character.skills.scholastic, 'scholastic')}</tbody></table></div>
-          <div class="table-wrap" style="margin-top:10px;"><table><thead><tr><th>Secondary skill</th><th>Category</th><th>%</th><th>Source</th><th>Action</th></tr></thead><tbody>${skillRows(character.skills.secondary, 'secondary')}</tbody></table></div>
-          <div class="table-wrap" style="margin-top:10px;"><table><thead><tr><th>Manual skill</th><th>Category</th><th>%</th><th>Source</th><th>Action</th></tr></thead><tbody>${skillRows(character.skills.manual, 'manual')}</tbody></table></div>
+      <div class="builder-step">
+        <div class="section-title"><h4>Action guide</h4></div>
+        <div class="grid grid-3">
+          ${renderCombatGuide(character)}
         </div>
+      </div>
 
-        <div class="builder-step">
-          <div class="section-title"><h3>Inventory</h3><div class="btn-row no-print"><button class="btn" data-action="char-add-carried-item">Add carried</button><button class="btn" data-action="char-add-stash-item">Add stash</button></div></div>
-          <div class="table-wrap"><table><thead><tr><th>Carried item</th><th>Category</th><th>Qty</th><th>Weight</th><th>Cost</th><th>Flags</th><th>Notes</th><th>Action</th></tr></thead><tbody>${inventoryRows(character.inventory?.carried || [], data, 'carried')}</tbody></table></div>
-          <div class="table-wrap" style="margin-top:10px;"><table><thead><tr><th>Stash item</th><th>Category</th><th>Qty</th><th>Weight</th><th>Cost</th><th>Flags</th><th>Notes</th><th>Action</th></tr></thead><tbody>${inventoryRows(character.inventory?.stash || [], data, 'stash')}</tbody></table></div>
+      <div class="builder-step">
+        <div class="section-title"><h4>Equipped attack helper</h4></div>
+        <div class="grid grid-3">
+          ${attackCards(character, data)}
         </div>
+        ${character.combat.special?.length ? `<div class="notice" style="margin-top:10px;">${character.combat.special.map((s) => `<div>• ${escapeHtml(s)}</div>`).join('')}</div>` : ''}
+      </div>
+    </div>
+  `;
 
-        <div class="builder-step">
-          <div class="section-title"><h3>Notes</h3></div>
-          <label class="field"><span>Character / campaign notes</span><textarea data-char-field="notes">${escapeHtml(character.notes || '')}</textarea></label>
+  const skillsContent = `
+    <div class="grid">
+      <div class="builder-step">
+        <div class="section-title"><h4>Skills</h4><div class="btn-row no-print"><button class="btn" data-action="add-manual-skill">Add manual skill</button></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Automatic skill</th><th>Category</th><th>%</th><th>Source</th><th>Action</th></tr></thead><tbody>${skillRows(character.skills.automatic, 'automatic')}</tbody></table></div>
+        <div class="table-wrap" style="margin-top:10px;"><table><thead><tr><th>Scholastic skill</th><th>Category</th><th>%</th><th>Program</th><th>Action</th></tr></thead><tbody>${skillRows(character.skills.scholastic, 'scholastic')}</tbody></table></div>
+        <div class="table-wrap" style="margin-top:10px;"><table><thead><tr><th>Secondary skill</th><th>Category</th><th>%</th><th>Source</th><th>Action</th></tr></thead><tbody>${skillRows(character.skills.secondary, 'secondary')}</tbody></table></div>
+        <div class="table-wrap" style="margin-top:10px;"><table><thead><tr><th>Manual skill</th><th>Category</th><th>%</th><th>Source</th><th>Action</th></tr></thead><tbody>${skillRows(character.skills.manual, 'manual')}</tbody></table></div>
+      </div>
+    </div>
+  `;
+
+  const inventoryContent = `
+    <div class="grid">
+      <div class="builder-step">
+        <div class="section-title"><h4>Inventory summary</h4><div class="stat-pills"><span class="pill ${encumbered ? 'bad' : 'good'}">Weight ${escapeHtml(carriedWeight)}/${escapeHtml(carryCapacity)}</span></div></div>
+        <div class="grid grid-4">
+          <label class="field"><span>Money</span><input type="number" data-char-field="inventory.money" value="${escapeHtml(character.inventory.money || 0)}" /></label>
+          <label class="field"><span>Carry capacity</span><input type="number" data-char-field="derived.carry.carry" value="${escapeHtml(character.derived?.carry?.carry || 0)}" /></label>
+          <label class="field"><span>Lift capacity</span><input type="number" data-char-field="derived.carry.lift" value="${escapeHtml(character.derived?.carry?.lift || 0)}" /></label>
+          <div class="option-box"><div class="muted small">Encumbrance</div><div>${encumbered ? 'Character is over carry capacity.' : 'Character is within carry capacity.'}</div></div>
         </div>
+      </div>
+
+      <div class="builder-step">
+        <div class="section-title"><h4>Inventory</h4><div class="btn-row no-print"><button class="btn" data-action="char-add-carried-item">Add carried</button><button class="btn" data-action="char-add-stash-item">Add stash</button></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Carried item</th><th>Category</th><th>Qty</th><th>Weight</th><th>Cost</th><th>Flags</th><th>Notes</th><th>Action</th></tr></thead><tbody>${inventoryRows(character.inventory?.carried || [], data, 'carried')}</tbody></table></div>
+        <div class="table-wrap" style="margin-top:10px;"><table><thead><tr><th>Stash item</th><th>Category</th><th>Qty</th><th>Weight</th><th>Cost</th><th>Flags</th><th>Notes</th><th>Action</th></tr></thead><tbody>${inventoryRows(character.inventory?.stash || [], data, 'stash')}</tbody></table></div>
+      </div>
+    </div>
+  `;
+
+  const notesContent = `
+    <div class="grid">
+      <div class="builder-step">
+        <div class="section-title"><h4>Notes</h4></div>
+        <label class="field"><span>Character / campaign notes</span><textarea data-char-field="notes">${escapeHtml(character.notes || '')}</textarea></label>
+      </div>
+    </div>
+  `;
+
+  return `
+    <section class="section sheet-screen">
+      <div class="sheet-sticky-stack">
+        ${header}
+      </div>
+      <div class="sheet-panels">
+        ${renderSheetPanel('overview', activeTab, 'Overview', overviewContent)}
+        ${renderSheetPanel('combat', activeTab, 'Actions / Combat', combatContent)}
+        ${renderSheetPanel('skills', activeTab, 'Skills', skillsContent)}
+        ${renderSheetPanel('inventory', activeTab, 'Inventory', inventoryContent)}
+        ${renderSheetPanel('notes', activeTab, 'Notes', notesContent)}
       </div>
     </section>
   `;
