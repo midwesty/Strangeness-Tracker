@@ -13,7 +13,14 @@ import {
   rollDiceString,
   uid,
   slugify,
-  wpStrikeBonus
+  wpStrikeBonus,
+  calculateCombatAttributeBonuses,
+  calculateCarryStats,
+  calculateSpeedYardsPerMinute,
+  resolveHandToHand,
+  accumulatePhysicalSkillBonuses,
+  totalCarriedWeight,
+  getSkillPercent
 } from './rules.js';
 import {
   createEmptyBuilder,
@@ -23,7 +30,9 @@ import {
   applyBackgroundMoney,
   validateBuilder,
   resolveBuilderToCharacter,
-  builderFromCharacter
+  builderFromCharacter,
+  ensureBuilderProgression,
+  rerollBuilderHpRoll
 } from './builder.js';
 import {
   renderHome,
@@ -32,7 +41,8 @@ import {
   renderLibrary,
   renderDiceModal,
   renderPromptModal,
-  renderItemPickerModal
+  renderItemPickerModal,
+  renderLevelUpModal
 } from './render.js';
 
 const appEl = document.getElementById('app');
@@ -51,7 +61,8 @@ const state = {
   diceLog: loadDiceLog(),
   modalContext: null,
   validation: { errors: [], warnings: [], bio: { spent: 0, budget: 0, remaining: 0 } },
-  sheetTab: 'overview'
+  sheetTab: 'overview',
+  sheetHeaderCollapsed: typeof window !== 'undefined' ? window.matchMedia('(max-width: 720px)').matches : false
 };
 
 async function loadData() {
@@ -159,6 +170,144 @@ function setResourceToMax(character, path, maxPath) {
   setByPath(character, path, maxValue, 'number');
 }
 
+function normalizeD6(value) {
+  const number = Number(value || 0);
+  return number >= 1 && number <= 6 ? number : rollDiceString('1d6').total;
+}
+
+function ensureCharacterProgression(character, targetLevel = character.level) {
+  const level = Math.max(1, Number(targetLevel || character.level || 1));
+  character.progression = character.progression || { baseHpRoll: rollDiceString('1d6').total, levelHpRolls: [] };
+  character.progression.baseHpRoll = normalizeD6(character.progression.baseHpRoll);
+  character.progression.levelHpRolls = Array.isArray(character.progression.levelHpRolls) ? character.progression.levelHpRolls : [];
+  while (character.progression.levelHpRolls.length < Math.max(0, level - 1)) {
+    character.progression.levelHpRolls.push(rollDiceString('1d6').total);
+  }
+  character.progression.levelHpRolls = character.progression.levelHpRolls.map((value) => normalizeD6(value));
+  return character.progression;
+}
+
+function resolveSkillMeta(skillEntry) {
+  if (!skillEntry?.name) return skillEntry || {};
+  const catalogSkill = state.data.skills.find((skill) => skill.name === skillEntry.name) || {};
+  return {
+    ...catalogSkill,
+    ...skillEntry,
+    base: skillEntry?.base ?? catalogSkill.base ?? null,
+    perLevel: skillEntry?.perLevel ?? catalogSkill.perLevel ?? null,
+    twoTrack: skillEntry?.twoTrack ?? catalogSkill.twoTrack ?? false,
+    secondaryBase: skillEntry?.secondaryBase ?? catalogSkill.secondaryBase ?? null,
+    category: skillEntry?.category || catalogSkill.category || 'Misc'
+  };
+}
+
+function recalculateSkillList(skills, level, scholasticBonus, iqBonus, isSecondary) {
+  return (skills || []).map((skillEntry) => {
+    const meta = resolveSkillMeta(skillEntry);
+    if (meta.base == null) return { ...skillEntry, ...meta };
+    return {
+      ...skillEntry,
+      ...meta,
+      percent: getSkillPercent(meta, level, isSecondary ? 0 : scholasticBonus, iqBonus, isSecondary)
+    };
+  });
+}
+
+function getEquippedArmorAr(character) {
+  const items = character.inventory?.carried || [];
+  const itemMap = new Map(state.data.allItems.map((item) => [item.id, item]));
+  return items.reduce((maxAr, entry) => {
+    if (!entry?.equipped) return maxAr;
+    const item = itemMap.get(entry.itemId);
+    return Math.max(maxAr, Number(item?.ar || entry.arOverride || 0));
+  }, 0);
+}
+
+function recalculateCharacterDerived(character, { hpGain = 0, refillActions = false } = {}) {
+  if (!state.data || !character) return;
+  const previousHp = Number(character.health?.hp || 0);
+  const previousActions = Number(character.combat?.actionsRemaining || 0);
+  const level = Math.max(1, Number(character.level || 1));
+  const background = state.data.backgrounds.find((row) => row.id === character.backgroundId) || {};
+  const attrs = character.attributes || {};
+  const attrCombat = calculateCombatAttributeBonuses(state.data.attribute_bonus_chart, attrs);
+  const hand = resolveHandToHand(state.data.hand_to_hand, character.combat?.handToHandStyle || 'basic', level);
+  const physical = accumulatePhysicalSkillBonuses(character.skills?.physical || [], state.data.physical_skill_effects);
+  const scholasticBonus = Number(background.scholasticBonus || character.education?.scholasticBonus || 0);
+  const iqBonus = Number(attrCombat.iqSkillBonus || 0);
+
+  character.skills = character.skills || {};
+  character.skills.automatic = recalculateSkillList(character.skills.automatic, level, scholasticBonus, iqBonus, false);
+  character.skills.scholastic = recalculateSkillList(character.skills.scholastic, level, scholasticBonus, iqBonus, false);
+  character.skills.secondary = recalculateSkillList(character.skills.secondary, level, 0, iqBonus, true);
+
+  character.combat = character.combat || {};
+  character.combat.actionsPerMelee = Math.max(0, 2 + hand.attacks + physical.attacks + Number(character.combat.manualBonusAttacks || 0) + Number(background.extraAttacks || 0));
+  character.combat.actionsRemaining = refillActions ? character.combat.actionsPerMelee : clamp(previousActions, 0, character.combat.actionsPerMelee);
+  character.combat.strike = attrCombat.strike + hand.strike + physical.strike + Number(character.combat.manualStrike || 0);
+  character.combat.parry = attrCombat.parry + hand.parry + physical.parry + Number(character.combat.manualParry || 0);
+  character.combat.dodge = attrCombat.dodge + hand.dodge + physical.dodge + Number(character.combat.manualDodge || 0);
+  character.combat.damage = attrCombat.damage + hand.damage + physical.damage + Number(character.combat.manualDamage || 0);
+  character.combat.roll = hand.roll + physical.roll + Number(character.combat.manualRoll || 0);
+  character.combat.pullPunch = hand.pullPunch + Number(character.combat.manualPullPunch || 0);
+  character.combat.bodyBlockStrike = physical.bodyBlockStrike || 0;
+  character.combat.bodyBlockDamage = physical.bodyBlockDamage || '1D4';
+  character.combat.kickDamage = hand.kickDamage || '1D6';
+  character.combat.underwaterDodge = physical.underwaterDodge || 0;
+  character.combat.special = [...new Set([...(hand.special || []), ...(physical.special || [])])];
+
+  character.derived = character.derived || {};
+  const carry = calculateCarryStats(attrs.ps);
+  const carriedWeight = totalCarriedWeight(character.inventory?.carried || [], state.data.allItems);
+  character.derived.iqSkillBonus = iqBonus;
+  character.derived.carry = carry;
+  character.derived.speedYardsPerMinute = calculateSpeedYardsPerMinute(attrs.spd);
+  character.derived.carriedWeight = carriedWeight;
+  character.derived.encumbered = carriedWeight > carry.carry;
+  character.derived.effectiveAr = Math.max(Number(character.health?.ar || 0), getEquippedArmorAr(character));
+
+  if (character.progression || character.builderSnapshot?.progression) {
+    ensureCharacterProgression(character, level);
+    const hpMax = Number(attrs.pe || 0)
+      + Number(character.progression.baseHpRoll || 0)
+      + character.progression.levelHpRolls.slice(0, Math.max(0, level - 1)).reduce((sum, value) => sum + Number(value || 0), 0);
+    character.health.maxHp = hpMax;
+    character.health.hp = clamp(previousHp + Number(hpGain || 0), 0, hpMax);
+  } else if (hpGain) {
+    character.health.maxHp = Number(character.health.maxHp || 0) + Number(hpGain || 0);
+    character.health.hp = clamp(previousHp + Number(hpGain || 0), 0, Number(character.health.maxHp || 0));
+  } else {
+    character.health.hp = clamp(previousHp, 0, Number(character.health.maxHp || previousHp));
+  }
+
+  character.health.sdc = clamp(Number(character.health.sdc || 0), 0, Number(character.health.maxSdc || character.health.sdc || 0));
+}
+
+function applyLevelChange(character, newLevel, rolls = []) {
+  const currentLevel = Math.max(1, Number(character.level || 1));
+  const targetLevel = Math.max(1, Number(newLevel || currentLevel));
+  if (targetLevel === currentLevel) return;
+
+  if (targetLevel > currentLevel) {
+    ensureCharacterProgression(character, targetLevel);
+    let hpGain = 0;
+    for (let levelIndex = currentLevel; levelIndex < targetLevel; levelIndex += 1) {
+      const suppliedRoll = normalizeD6(rolls[levelIndex - currentLevel] || character.progression.levelHpRolls[levelIndex - 1] || rollDiceString('1d6').total);
+      character.progression.levelHpRolls[levelIndex - 1] = suppliedRoll;
+      hpGain += suppliedRoll;
+    }
+    character.level = targetLevel;
+    recalculateCharacterDerived(character, { hpGain, refillActions: true });
+    return;
+  }
+
+  character.level = targetLevel;
+  if (character.progression?.levelHpRolls) {
+    character.progression.levelHpRolls = character.progression.levelHpRolls.slice(0, Math.max(0, targetLevel - 1));
+  }
+  recalculateCharacterDerived(character, { hpGain: 0, refillActions: true });
+}
+
 function readFileAsDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -216,6 +365,7 @@ function closeModal() {
 
 function resetBuilder() {
   state.builder = createEmptyBuilder(state.data);
+  ensureBuilderProgression(state.builder);
   state.validation = validateBuilder(state.builder, state.data);
 }
 
@@ -224,6 +374,8 @@ function openCharacter(id) {
   if (!character) return;
   state.activeCharacter = deepClone(character);
   state.sheetTab = 'overview';
+  state.sheetHeaderCollapsed = typeof window !== 'undefined' ? window.matchMedia('(max-width: 720px)').matches : state.sheetHeaderCollapsed;
+  recalculateCharacterDerived(state.activeCharacter, { hpGain: 0, refillActions: false });
   state.view = 'sheet';
   render();
 }
@@ -242,31 +394,52 @@ function updateBuilderField(path, value, type = 'text', checked = false) {
     const animal = state.data.allAnimals.find((item) => item.id === value);
     if (animal) state.builder.growthStepCurrent = animal.sizeLevel || state.builder.growthStepCurrent;
   }
+  if (path === 'backgroundId') {
+    ensureProgramSlots();
+  }
+  if (path === 'level' || path.startsWith('progression.')) {
+    ensureBuilderProgression(state.builder);
+  }
   render();
 }
 
 function updateCharacterField(path, value, type = 'text', checked = false) {
   pushHistory(state.activeCharacter);
+  const previousLevel = Number(state.activeCharacter.level || 1);
   setByPath(state.activeCharacter, path, value, type, checked);
-  if (path === 'health.hp') {
-    state.activeCharacter.health.hp = clamp(Number(state.activeCharacter.health.hp || 0), 0, Number(state.activeCharacter.health.maxHp || state.activeCharacter.health.hp || 0));
+
+  if (path === 'level') {
+    applyLevelChange(state.activeCharacter, Number(state.activeCharacter.level || previousLevel));
+  } else {
+    if (path === 'health.hp') {
+      state.activeCharacter.health.hp = clamp(Number(state.activeCharacter.health.hp || 0), 0, Number(state.activeCharacter.health.maxHp || state.activeCharacter.health.hp || 0));
+    }
+    if (path === 'health.sdc') {
+      state.activeCharacter.health.sdc = clamp(Number(state.activeCharacter.health.sdc || 0), 0, Number(state.activeCharacter.health.maxSdc || state.activeCharacter.health.sdc || 0));
+    }
+    if (path === 'combat.actionsRemaining') {
+      state.activeCharacter.combat.actionsRemaining = clamp(Number(state.activeCharacter.combat.actionsRemaining || 0), 0, maxActionsFor(state.activeCharacter));
+    }
+    if (path === 'combat.actionsPerMelee') {
+      state.activeCharacter.combat.actionsPerMelee = Math.max(0, Number(state.activeCharacter.combat.actionsPerMelee || 0));
+      state.activeCharacter.combat.actionsRemaining = clamp(Number(state.activeCharacter.combat.actionsRemaining || 0), 0, maxActionsFor(state.activeCharacter));
+    }
+
+    const needsRecalc = path.startsWith('attributes.')
+      || path === 'combat.handToHandStyle'
+      || path.startsWith('combat.manual')
+      || path === 'health.ar'
+      || path === 'backgroundId';
+
+    if (needsRecalc) {
+      recalculateCharacterDerived(state.activeCharacter, { hpGain: 0, refillActions: false });
+    }
   }
-  if (path === 'health.sdc') {
-    state.activeCharacter.health.sdc = clamp(Number(state.activeCharacter.health.sdc || 0), 0, Number(state.activeCharacter.health.maxSdc || state.activeCharacter.health.sdc || 0));
-  }
-  if (path === 'combat.actionsRemaining') {
-    state.activeCharacter.combat.actionsRemaining = clamp(Number(state.activeCharacter.combat.actionsRemaining || 0), 0, maxActionsFor(state.activeCharacter));
-  }
-  if (path === 'combat.actionsPerMelee') {
-    state.activeCharacter.combat.actionsPerMelee = Math.max(0, Number(state.activeCharacter.combat.actionsPerMelee || 0));
-    state.activeCharacter.combat.actionsRemaining = clamp(Number(state.activeCharacter.combat.actionsRemaining || 0), 0, maxActionsFor(state.activeCharacter));
-  }
-  if (path.startsWith('level')) {
-    // Level changes do not auto-rebuild from raw builder; user can edit directly or reopen builder.
-  }
+
   upsertActiveCharacter(state.activeCharacter);
   render();
 }
+
 
 function toggleListValue(list, value) {
   const index = list.indexOf(value);
@@ -299,10 +472,13 @@ function saveBuilderToCharacter() {
     }));
     return;
   }
+  ensureBuilderProgression(state.builder);
   const character = resolveBuilderToCharacter(state.builder, state.data);
   const existing = state.characters.find((item) => item.id === character.id);
   if (existing?.history) character.history = existing.history;
+  recalculateCharacterDerived(character, { hpGain: 0, refillActions: true });
   upsertActiveCharacter(character);
+  state.sheetHeaderCollapsed = typeof window !== 'undefined' ? window.matchMedia('(max-width: 720px)').matches : state.sheetHeaderCollapsed;
   state.view = 'sheet';
   render();
 }
@@ -533,6 +709,40 @@ document.addEventListener('click', async (event) => {
     render();
     return;
   }
+  if (action === 'reroll-builder-base-hp') {
+    rerollBuilderHpRoll(state.builder, -1);
+    render();
+    return;
+  }
+  if (action === 'reroll-builder-level-hp') {
+    rerollBuilderHpRoll(state.builder, Number(button.dataset.index || 0));
+    render();
+    return;
+  }
+  if (action === 'toggle-sheet-header') {
+    state.sheetHeaderCollapsed = !state.sheetHeaderCollapsed;
+    render();
+    return;
+  }
+  if (action === 'open-level-up') {
+    openModal(renderLevelUpModal(state.activeCharacter, rollDiceString('1d6').total), { type: 'level-up' });
+    return;
+  }
+  if (action === 'reroll-level-up-roll') {
+    const input = document.getElementById('level-up-roll');
+    if (input) input.value = String(rollDiceString('1d6').total);
+    return;
+  }
+  if (action === 'apply-level-up') {
+    const input = document.getElementById('level-up-roll');
+    const hpRoll = normalizeD6(input?.value || rollDiceString('1d6').total);
+    pushHistory(state.activeCharacter);
+    applyLevelChange(state.activeCharacter, Number(state.activeCharacter.level || 1) + 1, [hpRoll]);
+    upsertActiveCharacter(state.activeCharacter);
+    closeModal();
+    render();
+    return;
+  }
   if (action === 'save-builder') {
     saveBuilderToCharacter();
     return;
@@ -658,6 +868,7 @@ document.addEventListener('click', async (event) => {
     else {
       pushHistory(state.activeCharacter);
       addItemToTarget(button.dataset.location, button.dataset.id, state.activeCharacter.inventory);
+      recalculateCharacterDerived(state.activeCharacter, { hpGain: 0, refillActions: false });
       upsertActiveCharacter(state.activeCharacter);
     }
     closeModal();
@@ -667,22 +878,15 @@ document.addEventListener('click', async (event) => {
   if (action === 'char-delete-item') {
     pushHistory(state.activeCharacter);
     state.activeCharacter.inventory[button.dataset.location].splice(Number(button.dataset.index), 1);
+    recalculateCharacterDerived(state.activeCharacter, { hpGain: 0, refillActions: false });
     upsertActiveCharacter(state.activeCharacter);
     render();
     return;
   }
   if (action === 'char-item-equipped') {
-    pushHistory(state.activeCharacter);
-    state.activeCharacter.inventory[button.dataset.location][Number(button.dataset.index)].equipped = button.checked;
-    upsertActiveCharacter(state.activeCharacter);
-    render();
     return;
   }
   if (action === 'char-item-quest') {
-    pushHistory(state.activeCharacter);
-    state.activeCharacter.inventory[button.dataset.location][Number(button.dataset.index)].questItem = button.checked;
-    upsertActiveCharacter(state.activeCharacter);
-    render();
     return;
   }
   if (action === 'char-delete-skill') {
@@ -792,6 +996,7 @@ document.addEventListener('change', (event) => {
   if (target.matches('[data-action="char-item-qty"]')) {
     pushHistory(state.activeCharacter);
     state.activeCharacter.inventory[target.dataset.location][Number(target.dataset.index)].qty = Number(target.value || 1);
+    recalculateCharacterDerived(state.activeCharacter, { hpGain: 0, refillActions: false });
     upsertActiveCharacter(state.activeCharacter);
     render();
     return;
@@ -799,6 +1004,7 @@ document.addEventListener('change', (event) => {
   if (target.matches('[data-action="char-item-weight"]')) {
     pushHistory(state.activeCharacter);
     state.activeCharacter.inventory[target.dataset.location][Number(target.dataset.index)].weightOverride = Number(target.value || 0);
+    recalculateCharacterDerived(state.activeCharacter, { hpGain: 0, refillActions: false });
     upsertActiveCharacter(state.activeCharacter);
     render();
     return;
@@ -837,8 +1043,10 @@ importCharacterFileEl.addEventListener('change', async () => {
     const character = await readJsonFile(file);
     character.id = character.id || uid('char');
     character.history = character.history || { undoStack: [], redoStack: [] };
+    recalculateCharacterDerived(character, { hpGain: 0, refillActions: false });
     upsertActiveCharacter(character);
     state.sheetTab = 'overview';
+    state.sheetHeaderCollapsed = typeof window !== 'undefined' ? window.matchMedia('(max-width: 720px)').matches : state.sheetHeaderCollapsed;
     state.view = 'sheet';
     render();
   } catch (error) {
@@ -875,6 +1083,7 @@ avatarFileEl?.addEventListener('change', async () => {
     const dataUrl = await readFileAsDataUrl(file);
     pushHistory(state.activeCharacter);
     state.activeCharacter.avatarDataUrl = dataUrl;
+    recalculateCharacterDerived(state.activeCharacter, { hpGain: 0, refillActions: false });
     upsertActiveCharacter(state.activeCharacter);
     render();
   } catch (error) {

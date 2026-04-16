@@ -49,14 +49,17 @@ export function diceCount(str) {
 
 export function rollDiceString(input) {
   const expr = String(input).trim().toUpperCase();
+  if (!expr) {
+    return { total: 0, rolls: [] };
+  }
   if (expr === 'D%') {
     return { total: rollPercentile(), rolls: [] };
   }
-  const mathMatch = expr.match(/^(\d+)D(\d+)([+-]\d+)?$/);
+  const mathMatch = expr.match(/^(\d*)D(\d+)([+-]\d+)?$/);
   if (!mathMatch) {
     return { total: Number(expr) || 0, rolls: [] };
   }
-  const count = Number(mathMatch[1]);
+  const count = Number(mathMatch[1] || 1);
   const sides = Number(mathMatch[2]);
   const mod = Number(mathMatch[3] || 0);
   const rolls = Array.from({ length: count }, () => 1 + Math.floor(Math.random() * sides));
@@ -66,7 +69,8 @@ export function rollDiceString(input) {
 export function rollPercentile() {
   const tens = Math.floor(Math.random() * 10);
   const ones = Math.floor(Math.random() * 10);
-  return tens * 10 + ones;
+  const total = (tens * 10) + ones;
+  return total === 0 ? 100 : total;
 }
 
 export function calculateIqBonus(chart, iq) {

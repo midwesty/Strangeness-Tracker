@@ -242,6 +242,31 @@ export function renderBuilder(state, data) {
         </div>
 
         <div class="builder-step">
+          <div class="section-title"><h3><span class="step-number">1A</span>Level progression</h3></div>
+          <div class="option-box">
+            <div class="muted small">Hit points follow the book: P.E. + 1D6 at level 1, then +1D6 for each additional level.</div>
+            <div class="grid grid-4" style="margin-top:10px;">
+              <label class="field">
+                <span>Base HP roll</span>
+                <div class="btn-row">
+                  <input type="number" min="1" max="6" data-builder-field="progression.baseHpRoll" value="${escapeHtml(builder.progression?.baseHpRoll || 1)}" />
+                  <button class="btn" type="button" data-action="reroll-builder-base-hp">Reroll</button>
+                </div>
+              </label>
+              ${(builder.progression?.levelHpRolls || []).map((roll, idx) => `
+                <label class="field">
+                  <span>Level ${idx + 2} HP roll</span>
+                  <div class="btn-row">
+                    <input type="number" min="1" max="6" data-builder-field="progression.levelHpRolls.${idx}" value="${escapeHtml(roll)}" />
+                    <button class="btn" type="button" data-action="reroll-builder-level-hp" data-index="${idx}">Reroll</button>
+                  </div>
+                </label>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="builder-step">
           <div class="section-title"><h3><span class="step-number">2</span>Attributes</h3></div>
           <div class="grid grid-4">
             ${['iq','me','ma','ps','pp','pe','pb','spd'].map((key) => `
@@ -484,11 +509,13 @@ export function renderSheet(state, data) {
   const allStatuses = data.allStatuses;
   const activeStatuses = allStatuses.filter((status) => character.statuses.includes(status.id));
 
+  const effectiveAr = Number(character.derived?.effectiveAr ?? character.health.ar ?? 0);
   const header = `
     <div class="sheet-toolbar no-print">
       <div class="btn-row">
         <button class="btn" data-action="home">Home</button>
         <button class="btn" data-action="open-character-builder" data-id="${character.id}">Edit in builder</button>
+        <button class="btn" data-action="open-level-up">Level Up</button>
         <button class="btn" data-action="undo">Undo</button>
         <button class="btn" data-action="redo">Redo</button>
         <button class="btn" data-action="save-character">Save</button>
@@ -497,49 +524,56 @@ export function renderSheet(state, data) {
       </div>
     </div>
 
-    <div class="sheet-hero">
-      <div class="sheet-avatar-card">
-        <div class="avatar-frame">
-          ${character.avatarDataUrl
-            ? `<img src="${escapeHtml(character.avatarDataUrl)}" alt="${escapeHtml(character.name)} avatar" class="avatar-image" />`
-            : `<div class="avatar-placeholder">${escapeHtml(getInitials(character.name))}</div>`}
-        </div>
-        <div class="btn-row no-print sheet-avatar-actions">
-          <button class="btn" data-action="open-avatar-upload">Upload</button>
-          ${character.avatarDataUrl ? `<button class="btn btn-danger" data-action="remove-avatar">Remove</button>` : ''}
+    <div class="sheet-hero ${state.sheetHeaderCollapsed ? 'collapsed' : ''}">
+      <div class="sheet-hero-top no-print">
+        <div class="sheet-hero-topline">
+          <div>
+            <div class="kicker">Character sheet</div>
+            <h2>${escapeHtml(character.name)}</h2>
+            <div class="muted small">${escapeHtml(character.animalName || 'Human / template')} · Level ${escapeHtml(character.level)} · ${escapeHtml(character.alignment || '—')}</div>
+          </div>
+          <button class="btn btn-ghost" data-action="toggle-sheet-header">${state.sheetHeaderCollapsed ? 'Show header' : 'Hide header'}</button>
         </div>
       </div>
 
-      <div class="sheet-hero-main">
-        <div>
-          <div class="kicker">Character sheet</div>
-          <h2>${escapeHtml(character.name)}</h2>
-          <div class="muted small">${escapeHtml(character.animalName || 'Human / template')} · Level ${escapeHtml(character.level)} · ${escapeHtml(character.alignment || '—')}</div>
-        </div>
-
-        <div class="sheet-status-summary">
-          ${activeStatuses.length
-            ? activeStatuses.map((status) => `<span class="pill warn">${escapeHtml(status.label)}</span>`).join('')
-            : '<span class="pill">No active conditions</span>'}
-        </div>
-
-        <div class="sheet-mini-grid">
-          <div class="mini-meter"><div class="mini-meter-label">A.R.</div><div class="mini-meter-value">${escapeHtml(character.health.ar || 0)}</div></div>
-          ${renderMiniMeter({ label: 'HP', current: character.health.hp, max: character.health.maxHp, resource: 'hp' })}
-          ${renderMiniMeter({ label: 'S.D.C.', current: character.health.sdc, max: character.health.maxSdc, resource: 'sdc' })}
-          ${renderMiniMeter({ label: 'Actions', current: character.combat.actionsRemaining, max: character.combat.actionsPerMelee, resource: 'actions', extraLabel: character.combat.currentInitiative ? `Init ${character.combat.currentInitiative}` : '' })}
-          <div class="mini-meter">
-            <div class="mini-meter-label">Carry</div>
-            <div class="mini-meter-value">${escapeHtml(carriedWeight)}/${escapeHtml(carryCapacity)}</div>
-            <div class="mini-meter-sub ${encumbered ? 'text-bad' : ''}">${encumbered ? 'Encumbered' : 'Within limit'}</div>
+      <div class="sheet-hero-body">
+        <div class="sheet-avatar-card">
+          <div class="avatar-frame">
+            ${character.avatarDataUrl
+              ? `<img src="${escapeHtml(character.avatarDataUrl)}" alt="${escapeHtml(character.name)} avatar" class="avatar-image" />`
+              : `<div class="avatar-placeholder">${escapeHtml(getInitials(character.name))}</div>`}
+          </div>
+          <div class="btn-row no-print sheet-avatar-actions">
+            <button class="btn" data-action="open-avatar-upload">Upload</button>
+            ${character.avatarDataUrl ? `<button class="btn btn-danger" data-action="remove-avatar">Remove</button>` : ''}
           </div>
         </div>
 
-        <div class="btn-row no-print sheet-quick-actions">
-          <button class="btn" data-action="spend-action">Use 1 action</button>
-          <button class="btn" data-action="reset-melee">Reset melee</button>
-          <button class="btn" data-action="reset-combat">Reset combat</button>
-          <button class="btn btn-secondary" data-action="full-heal">Full heal</button>
+        <div class="sheet-hero-main">
+          <div class="sheet-status-summary">
+            ${activeStatuses.length
+              ? activeStatuses.map((status) => `<span class="pill warn">${escapeHtml(status.label)}</span>`).join('')
+              : '<span class="pill">No active conditions</span>'}
+          </div>
+
+          <div class="sheet-mini-grid">
+            <div class="mini-meter"><div class="mini-meter-label">A.R.</div><div class="mini-meter-value">${escapeHtml(effectiveAr || 0)}</div></div>
+            ${renderMiniMeter({ label: 'HP', current: character.health.hp, max: character.health.maxHp, resource: 'hp' })}
+            ${renderMiniMeter({ label: 'S.D.C.', current: character.health.sdc, max: character.health.maxSdc, resource: 'sdc' })}
+            ${renderMiniMeter({ label: 'Actions', current: character.combat.actionsRemaining, max: character.combat.actionsPerMelee, resource: 'actions', extraLabel: character.combat.currentInitiative ? `Init ${character.combat.currentInitiative}` : '' })}
+            <div class="mini-meter">
+              <div class="mini-meter-label">Carry</div>
+              <div class="mini-meter-value">${escapeHtml(carriedWeight)}/${escapeHtml(carryCapacity)}</div>
+              <div class="mini-meter-sub ${encumbered ? 'text-bad' : ''}">${encumbered ? 'Encumbered' : 'Within limit'}</div>
+            </div>
+          </div>
+
+          <div class="btn-row no-print sheet-quick-actions">
+            <button class="btn" data-action="spend-action">Use 1 action</button>
+            <button class="btn" data-action="reset-melee">Reset melee</button>
+            <button class="btn" data-action="reset-combat">Reset combat</button>
+            <button class="btn btn-secondary" data-action="full-heal">Full heal</button>
+          </div>
         </div>
       </div>
     </div>
@@ -563,6 +597,7 @@ export function renderSheet(state, data) {
           <label class="field"><span>Age</span><input type="number" data-char-field="age" value="${escapeHtml(character.age)}" /></label>
           <label class="field"><span>Sex</span><input type="text" data-char-field="sex" value="${escapeHtml(character.sex)}" /></label>
           <label class="field"><span>Level</span><input type="number" min="1" max="15" data-char-field="level" value="${escapeHtml(character.level)}" /></label>
+          <div class="option-box no-print"><div class="muted small">Need the app to handle the next level for you?</div><div class="btn-row" style="margin-top:8px;"><button class="btn" data-action="open-level-up">Level Up</button></div></div>
           <label class="field"><span>Money</span><input type="number" data-char-field="inventory.money" value="${escapeHtml(character.inventory.money || 0)}" /></label>
           <label class="field"><span>Initiative</span><input type="text" data-char-field="combat.currentInitiative" value="${escapeHtml(character.combat.currentInitiative || '')}" /></label>
           <label class="check-chip"><input type="checkbox" data-char-field="gmOverride" ${character.gmOverride ? 'checked' : ''} /><span>GM Override</span></label>
@@ -796,6 +831,29 @@ export function renderDiceModal(log) {
       <div class="btn-row"><button class="btn btn-secondary" data-action="roll-custom-dice">Roll custom</button></div>
       <div class="section-title"><h4>Recent rolls</h4></div>
       <div class="roll-log">${(log || []).map((entry) => `<div class="list-item"><strong>${escapeHtml(entry.label)}</strong> = ${escapeHtml(entry.total)} <div class="muted tiny">${escapeHtml(entry.detail)}</div></div>`).join('') || '<div class="notice">No rolls yet.</div>'}</div>
+    </div>
+  `;
+}
+
+export function renderLevelUpModal(character, suggestedRoll = 1) {
+  return `
+    <div class="modal-inner">
+      <div class="modal-header">
+        <div>
+          <div class="kicker">Progression</div>
+          <h3>Level up ${escapeHtml(character.name || 'character')}</h3>
+        </div>
+        <button class="btn btn-ghost" data-action="close-modal">Close</button>
+      </div>
+      <div class="notice">Level ${escapeHtml(character.level)} → Level ${escapeHtml(Number(character.level || 1) + 1)}. The book adds 1D6 hit points on each new level, while skills and hand-to-hand bonuses advance with the new level.</div>
+      <div class="grid grid-2">
+        <label class="field"><span>HP roll for next level</span><input id="level-up-roll" type="number" min="1" max="6" value="${escapeHtml(suggestedRoll)}" /></label>
+        <div class="option-box"><div class="muted small">Need a fresh roll?</div><div class="btn-row" style="margin-top:8px;"><button class="btn" data-action="reroll-level-up-roll">Reroll D6</button></div></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" data-action="apply-level-up">Apply level up</button>
+        <button class="btn" data-action="close-modal">Cancel</button>
+      </div>
     </div>
   `;
 }

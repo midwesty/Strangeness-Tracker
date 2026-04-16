@@ -66,6 +66,7 @@ export function createEmptyBuilder(data) {
     },
     inventory: { money: 0, carried: [], stash: [] },
     health: { hp: 0, maxHp: 0, sdc: 0, maxSdc: 0, ar: 0 },
+    progression: { baseHpRoll: rollD6(), levelHpRolls: [] },
     statuses: [],
     notes: ''
   };
@@ -103,6 +104,32 @@ function roll3d6() {
 }
 function rollD6() {
   return 1 + Math.floor(Math.random() * 6);
+}
+
+function clampD6(value) {
+  const number = Number(value || 0);
+  return number >= 1 && number <= 6 ? number : rollD6();
+}
+
+export function ensureBuilderProgression(builder) {
+  const level = Math.max(1, Number(builder?.level || 1));
+  builder.progression = builder.progression || { baseHpRoll: rollD6(), levelHpRolls: [] };
+  builder.progression.baseHpRoll = clampD6(builder.progression.baseHpRoll);
+  builder.progression.levelHpRolls = Array.isArray(builder.progression.levelHpRolls) ? builder.progression.levelHpRolls : [];
+  while (builder.progression.levelHpRolls.length < Math.max(0, level - 1)) {
+    builder.progression.levelHpRolls.push(rollD6());
+  }
+  builder.progression.levelHpRolls = builder.progression.levelHpRolls
+    .slice(0, Math.max(0, level - 1))
+    .map((value) => clampD6(value));
+  return builder;
+}
+
+export function rerollBuilderHpRoll(builder, index = -1) {
+  ensureBuilderProgression(builder);
+  if (index < 0) builder.progression.baseHpRoll = rollD6();
+  else if (index < builder.progression.levelHpRolls.length) builder.progression.levelHpRolls[index] = rollD6();
+  return builder;
 }
 
 export function randomizeAnimal(builder, data) {
@@ -211,7 +238,10 @@ function resolveProgramSkills(selection, data, level, scholasticBonus, iqBonus) 
       base: skill?.base ?? null,
       perLevel: skill?.perLevel ?? null,
       category: skill?.category || 'Misc',
-      fromProgram: program.label
+      fromProgram: program.label,
+      twoTrack: !!skill?.twoTrack,
+      secondaryBase: skill?.secondaryBase ?? null,
+      repeats: !!skill?.repeats
     });
   };
   (program.fixed || program.skills || []).forEach(addSkill);
@@ -229,12 +259,16 @@ function resolveSecondarySkills(names, data, level, iqBonus) {
       percent: getSkillPercent(skill, level, 0, iqBonus, true),
       base: skill?.base ?? null,
       perLevel: skill?.perLevel ?? null,
-      category: skill?.category || 'Misc'
+      category: skill?.category || 'Misc',
+      twoTrack: !!skill?.twoTrack,
+      secondaryBase: skill?.secondaryBase ?? null,
+      repeats: !!skill?.repeats
     };
   });
 }
 
 export function validateBuilder(builder, data) {
+  ensureBuilderProgression(builder);
   const animal = resolvedAnimal(builder, data);
   const bg = data.backgrounds.find((b) => b.id === builder.backgroundId);
   const errors = [];
@@ -247,11 +281,50 @@ export function validateBuilder(builder, data) {
   if (bio.spent > bio.budget) errors.push(`BIO-E overspent: ${bio.spent} spent / ${bio.budget} budget.`);
   if (bio.spent < bio.budget) warnings.push(`BIO-E remaining: ${bio.budget - bio.spent}.`);
 
-  if (bg?.secondarySelections && builder.skills.secondarySkills.length > bg.secondarySelections) {
-    errors.push(`Too many secondary skills for selected background (${builder.skills.secondarySkills.length}/${bg.secondarySelections}).`);
+  const selectedPrograms = (preparedBuilder.skills.scholasticPrograms || []).filter((program) => program.programId);
+  if (bg?.programSelections != null) {
+    if (selectedPrograms.length > bg.programSelections) {
+      errors.push(`Too many scholastic programs for selected background (${selectedPrograms.length}/${bg.programSelections}).`);
+    }
+    if (selectedPrograms.length < bg.programSelections) {
+      warnings.push(`Choose ${bg.programSelections - selectedPrograms.length} more scholastic program(s).`);
+    }
   }
-  if (bg?.programSelections && builder.skills.scholasticPrograms.filter((p) => p.programId).length > bg.programSelections) {
-    errors.push(`Too many scholastic programs for selected background (${builder.skills.scholasticPrograms.filter((p) => p.programId).length}/${bg.programSelections}).`);
+
+  for (const slot of selectedPrograms) {
+    const program = data.programs.find((programRow) => programRow.id === slot.programId);
+    if (!program) continue;
+    if (bg?.allowedPrograms?.length && !bg.allowedPrograms.includes(program.id)) {
+      errors.push(`${program.label} is not allowed for the selected background.`);
+    }
+    const requiredPicks = Number(program.choose || 0);
+    const chosenPicks = (slot.picks || []).length;
+    if (chosenPicks > requiredPicks) {
+      errors.push(`${program.label} has too many picks (${chosenPicks}/${requiredPicks}).`);
+    }
+    if (requiredPicks && chosenPicks < requiredPicks) {
+      warnings.push(`${program.label} needs ${requiredPicks - chosenPicks} more pick(s).`);
+    }
+  }
+
+  if (bg?.secondarySelections != null) {
+    const selectedSecondary = preparedBuilder.skills.secondarySkills.length;
+    if (selectedSecondary > bg.secondarySelections) {
+      errors.push(`Too many secondary skills for selected background (${selectedSecondary}/${bg.secondarySelections}).`);
+    }
+    if (selectedSecondary < bg.secondarySelections) {
+      warnings.push(`Choose ${bg.secondarySelections - selectedSecondary} more secondary skill(s).`);
+    }
+  }
+
+  if (bg?.physicalSelections != null) {
+    const selectedPhysical = builder.combat.physicalSkills.length;
+    if (selectedPhysical > bg.physicalSelections) {
+      errors.push(`Too many physical skills for selected background (${selectedPhysical}/${bg.physicalSelections}).`);
+    }
+    if (selectedPhysical < bg.physicalSelections) {
+      warnings.push(`Choose ${bg.physicalSelections - selectedPhysical} more physical skill(s).`);
+    }
   }
 
   if ((builder.features.selectedPowers || []).some((id) => String(id).toLowerCase().includes('psionic')) && (Number(builder.attributes.me) < 12)) {
@@ -285,38 +358,38 @@ export function calculateBioE(builder, data) {
 }
 
 export function resolveBuilderToCharacter(builder, data) {
-  const animal = resolvedAnimal(builder, data);
-  const background = data.backgrounds.find((b) => b.id === builder.backgroundId) || null;
-  const growth = getGrowthEffects(builder.growthStepCurrent || animal?.sizeLevel || 6);
-  const iqBonus = (data.attribute_bonus_chart[String(builder.attributes.iq)] || {}).iqSkill || 0;
-  const attrCombatBonuses = calculateCombatAttributeBonuses(data.attribute_bonus_chart, builder.attributes);
-  const hand = resolveHandToHand(data.hand_to_hand, builder.combat.handToHandStyle, builder.level);
-  const physical = accumulatePhysicalSkillBonuses(builder.combat.physicalSkills, data.physical_skill_effects);
+  const preparedBuilder = ensureBuilderProgression(deepClone(builder));
+  const animal = resolvedAnimal(preparedBuilder, data);
+  const background = data.backgrounds.find((b) => b.id === preparedBuilder.backgroundId) || null;
+  const growth = getGrowthEffects(preparedBuilder.growthStepCurrent || animal?.sizeLevel || 6);
+  const hand = resolveHandToHand(data.hand_to_hand, preparedBuilder.combat.handToHandStyle, preparedBuilder.level);
+  const physical = accumulatePhysicalSkillBonuses(preparedBuilder.combat.physicalSkills, data.physical_skill_effects);
 
   const animalAttrBonuses = animal?.attributeBonuses || {};
   const backgroundAttrBonuses = background?.attributeBonuses || {};
 
-  const attributes = deepClone(builder.attributes);
-  attributes.iq += Number(animalAttrBonuses.iq || 0) + Number(backgroundAttrBonuses.iq || 0) + Number(builder.team.manualSharedBonuses.iq || 0) + Number(growth.iq || 0);
-  attributes.me += Number(animalAttrBonuses.me || 0) + Number(backgroundAttrBonuses.me || 0) + Number(builder.team.manualSharedBonuses.me || 0);
-  attributes.ma += Number(animalAttrBonuses.ma || 0) + Number(backgroundAttrBonuses.ma || 0) + Number(builder.team.manualSharedBonuses.ma || 0);
-  attributes.ps += Number(animalAttrBonuses.ps || 0) + Number(backgroundAttrBonuses.ps || 0) + Number(builder.team.manualSharedBonuses.ps || 0) + Number(growth.ps || 0) + Number(physical.ps || 0);
-  attributes.pp += Number(animalAttrBonuses.pp || 0) + Number(backgroundAttrBonuses.pp || 0) + Number(builder.team.manualSharedBonuses.pp || 0) + Number(physical.pp || 0);
-  attributes.pe += Number(animalAttrBonuses.pe || 0) + Number(backgroundAttrBonuses.pe || 0) + Number(builder.team.manualSharedBonuses.pe || 0) + Number(growth.pe || 0) + Number(physical.pe || 0);
-  attributes.pb += Number(animalAttrBonuses.pb || 0) + Number(backgroundAttrBonuses.pb || 0) + Number(builder.team.manualSharedBonuses.pb || 0);
-  attributes.spd += Number(animalAttrBonuses.spd || 0) + Number(backgroundAttrBonuses.spd || 0) + Number(builder.team.manualSharedBonuses.spd || 0) + Number(growth.spd || 0) + Number(physical.spd || 0);
+  const attributes = deepClone(preparedBuilder.attributes);
+  attributes.iq += Number(animalAttrBonuses.iq || 0) + Number(backgroundAttrBonuses.iq || 0) + Number(preparedBuilder.team.manualSharedBonuses.iq || 0) + Number(growth.iq || 0);
+  attributes.me += Number(animalAttrBonuses.me || 0) + Number(backgroundAttrBonuses.me || 0) + Number(preparedBuilder.team.manualSharedBonuses.me || 0);
+  attributes.ma += Number(animalAttrBonuses.ma || 0) + Number(backgroundAttrBonuses.ma || 0) + Number(preparedBuilder.team.manualSharedBonuses.ma || 0);
+  attributes.ps += Number(animalAttrBonuses.ps || 0) + Number(backgroundAttrBonuses.ps || 0) + Number(preparedBuilder.team.manualSharedBonuses.ps || 0) + Number(growth.ps || 0) + Number(physical.ps || 0);
+  attributes.pp += Number(animalAttrBonuses.pp || 0) + Number(backgroundAttrBonuses.pp || 0) + Number(preparedBuilder.team.manualSharedBonuses.pp || 0) + Number(physical.pp || 0);
+  attributes.pe += Number(animalAttrBonuses.pe || 0) + Number(backgroundAttrBonuses.pe || 0) + Number(preparedBuilder.team.manualSharedBonuses.pe || 0) + Number(growth.pe || 0) + Number(physical.pe || 0);
+  attributes.pb += Number(animalAttrBonuses.pb || 0) + Number(backgroundAttrBonuses.pb || 0) + Number(preparedBuilder.team.manualSharedBonuses.pb || 0);
+  attributes.spd += Number(animalAttrBonuses.spd || 0) + Number(backgroundAttrBonuses.spd || 0) + Number(preparedBuilder.team.manualSharedBonuses.spd || 0) + Number(growth.spd || 0) + Number(physical.spd || 0);
 
+  const iqBonus = (data.attribute_bonus_chart[String(attributes.iq)] || {}).iqSkill || 0;
   const combatFromAttrs = calculateCombatAttributeBonuses(data.attribute_bonus_chart, attributes);
-  const strike = combatFromAttrs.strike + hand.strike + physical.strike + Number(builder.combat.manualStrike || 0);
-  const parry = combatFromAttrs.parry + hand.parry + physical.parry + Number(builder.combat.manualParry || 0);
-  const dodge = combatFromAttrs.dodge + hand.dodge + physical.dodge + Number(builder.combat.manualDodge || 0);
-  const damage = combatFromAttrs.damage + hand.damage + physical.damage + Number(builder.combat.manualDamage || 0);
-  const roll = hand.roll + physical.roll + Number(builder.combat.manualRoll || 0);
-  const pullPunch = hand.pullPunch + Number(builder.combat.manualPullPunch || 0);
-  const actionsPerMelee = 2 + hand.attacks + physical.attacks + Number(builder.combat.manualBonusAttacks || 0) + Number(background?.extraAttacks || 0);
+  const strike = combatFromAttrs.strike + hand.strike + physical.strike + Number(preparedBuilder.combat.manualStrike || 0);
+  const parry = combatFromAttrs.parry + hand.parry + physical.parry + Number(preparedBuilder.combat.manualParry || 0);
+  const dodge = combatFromAttrs.dodge + hand.dodge + physical.dodge + Number(preparedBuilder.combat.manualDodge || 0);
+  const damage = combatFromAttrs.damage + hand.damage + physical.damage + Number(preparedBuilder.combat.manualDamage || 0);
+  const roll = hand.roll + physical.roll + Number(preparedBuilder.combat.manualRoll || 0);
+  const pullPunch = hand.pullPunch + Number(preparedBuilder.combat.manualPullPunch || 0);
+  const actionsPerMelee = 2 + hand.attacks + physical.attacks + Number(preparedBuilder.combat.manualBonusAttacks || 0) + Number(background?.extraAttacks || 0);
 
   const naturalArmorEffects = (animal?.powers || [])
-    .filter((p) => (builder.features.selectedPowers || []).includes(p.name) && /Natural Body Armour/i.test(p.name));
+    .filter((p) => (preparedBuilder.features.selectedPowers || []).includes(p.name) && /Natural Body Armour/i.test(p.name));
   const naturalAr = Math.max(0, ...naturalArmorEffects.map((p) => selectedEffectValue(p.effect, 'ar') || 0));
   const naturalSdcBonus = naturalArmorEffects.reduce((sum, p) => sum + Number(selectedEffectValue(p.effect, 'sdc') || 0), 0);
 
@@ -330,35 +403,36 @@ export function resolveBuilderToCharacter(builder, data) {
         id: uid('skill'),
         name,
         type: 'automatic',
-        percent: getSkillPercent(skill, builder.level, scholasticBonus, iqBonus, false),
+        percent: getSkillPercent(skill, preparedBuilder.level, scholasticBonus, iqBonus, false),
         base: skill?.base ?? null,
         perLevel: skill?.perLevel ?? null,
         category: skill?.category || 'Automatic'
       };
     });
 
-  const scholasticSkills = (builder.skills.scholasticPrograms || []).flatMap((selection) =>
-    resolveProgramSkills(selection, data, builder.level, scholasticBonus, iqBonus)
+  const scholasticSkills = (preparedBuilder.skills.scholasticPrograms || []).flatMap((selection) =>
+    resolveProgramSkills(selection, data, preparedBuilder.level, scholasticBonus, iqBonus)
   );
-  const secondarySkills = resolveSecondarySkills(builder.skills.secondarySkills, data, builder.level, iqBonus);
-  const manualSkills = (builder.skills.manualSkills || []).map((skill) => ({ ...skill, id: skill.id || uid('skill') }));
+  const secondarySkills = resolveSecondarySkills(preparedBuilder.skills.secondarySkills, data, preparedBuilder.level, iqBonus);
+  const manualSkills = (preparedBuilder.skills.manualSkills || []).map((skill) => ({ ...skill, id: skill.id || uid('skill') }));
 
   const carry = calculateCarryStats(attributes.ps);
-  const carriedWeight = totalCarriedWeight(builder.inventory.carried, data.items);
-  const hpMax = Number(builder.health.maxHp || builder.health.hp || 0) || (1 + Math.floor(Math.random() * 6) + Number(attributes.pe || 0));
-  const sdcMax = Number(builder.health.maxSdc || builder.health.sdc || 0) || (Number(growth.sdc || 0) + Number(physical.sdc || 0) + naturalSdcBonus + Number(background?.attributeBonuses?.sdcFlat || 0));
+  const carriedWeight = totalCarriedWeight(preparedBuilder.inventory.carried, data.items);
+  const hpRolls = preparedBuilder.progression.levelHpRolls.slice(0, Math.max(0, Number(preparedBuilder.level || 1) - 1));
+  const hpMax = Number(attributes.pe || 0) + Number(preparedBuilder.progression.baseHpRoll || 0) + hpRolls.reduce((sum, value) => sum + Number(value || 0), 0);
+  const sdcMax = Number(preparedBuilder.health.maxSdc || preparedBuilder.health.sdc || 0) || (Number(growth.sdc || 0) + Number(physical.sdc || 0) + naturalSdcBonus + Number(background?.attributeBonuses?.sdcFlat || 0));
 
   const character = {
-    id: builder.id || uid('char'),
+    id: preparedBuilder.id || uid('char'),
     templateId: null,
-    name: builder.name.trim(),
-    alignment: builder.alignment,
-    age: builder.age,
-    sex: builder.sex,
-    level: Number(builder.level || 1),
-    gmOverride: !!builder.gmOverride,
-    initiative: builder.initiative,
-    team: deepClone(builder.team),
+    name: preparedBuilder.name.trim(),
+    alignment: preparedBuilder.alignment,
+    age: preparedBuilder.age,
+    sex: preparedBuilder.sex,
+    level: Number(preparedBuilder.level || 1),
+    gmOverride: !!preparedBuilder.gmOverride,
+    initiative: preparedBuilder.initiative,
+    team: deepClone(preparedBuilder.team),
     animalId: animal?.id || null,
     animalName: animal?.name || '',
     category: animal?.category || '',
@@ -369,14 +443,14 @@ export function resolveBuilderToCharacter(builder, data) {
       iqSkillBonus: iqBonus,
       carry,
       speedYardsPerMinute: calculateSpeedYardsPerMinute(attributes.spd),
-      sizeStep: Number(builder.growthStepCurrent || animal?.sizeLevel || 6),
+      sizeStep: Number(preparedBuilder.growthStepCurrent || animal?.sizeLevel || 6),
       weightRange: growth.weightRange,
       carriedWeight,
       encumbered: carriedWeight > carry.carry
     },
-    features: deepClone(builder.features),
+    features: deepClone(preparedBuilder.features),
     combat: {
-      handToHandStyle: builder.combat.handToHandStyle,
+      handToHandStyle: preparedBuilder.combat.handToHandStyle,
       actionsPerMelee,
       actionsRemaining: actionsPerMelee,
       strike,
@@ -390,34 +464,36 @@ export function resolveBuilderToCharacter(builder, data) {
       kickDamage: hand.kickDamage || '1D6',
       underwaterDodge: physical.underwaterDodge || 0,
       special: [...new Set([...(hand.special || []), ...(physical.special || [])])],
-      manualBonusAttacks: builder.combat.manualBonusAttacks,
-      manualStrike: builder.combat.manualStrike,
-      manualParry: builder.combat.manualParry,
-      manualDodge: builder.combat.manualDodge,
-      manualDamage: builder.combat.manualDamage,
-      manualRoll: builder.combat.manualRoll,
-      manualPullPunch: builder.combat.manualPullPunch,
-      currentInitiative: builder.combat.currentInitiative || builder.initiative || ''
+      manualBonusAttacks: preparedBuilder.combat.manualBonusAttacks,
+      manualStrike: preparedBuilder.combat.manualStrike,
+      manualParry: preparedBuilder.combat.manualParry,
+      manualDodge: preparedBuilder.combat.manualDodge,
+      manualDamage: preparedBuilder.combat.manualDamage,
+      manualRoll: preparedBuilder.combat.manualRoll,
+      manualPullPunch: preparedBuilder.combat.manualPullPunch,
+      currentInitiative: preparedBuilder.combat.currentInitiative || preparedBuilder.initiative || ''
     },
     health: {
-      hp: Number(builder.health.hp || hpMax),
+      hp: Math.min(hpMax, Number(preparedBuilder.health.hp || hpMax)),
       maxHp: hpMax,
-      sdc: Number(builder.health.sdc || sdcMax),
+      sdc: Math.min(sdcMax, Number(preparedBuilder.health.sdc || sdcMax)),
       maxSdc: sdcMax,
-      ar: Math.max(Number(builder.health.ar || 0), naturalAr)
+      ar: Math.max(Number(preparedBuilder.health.ar || 0), naturalAr)
     },
+    progression: deepClone(preparedBuilder.progression),
     skills: {
       automatic: automaticSkills,
       scholastic: scholasticSkills,
       secondary: secondarySkills,
       manual: manualSkills,
-      physical: deepClone(builder.combat.physicalSkills),
-      scholasticPrograms: deepClone(builder.skills.scholasticPrograms),
-      secondaryNames: deepClone(builder.skills.secondarySkills)
+      physical: deepClone(preparedBuilder.combat.physicalSkills),
+      scholasticPrograms: deepClone(preparedBuilder.skills.scholasticPrograms),
+      secondaryNames: deepClone(preparedBuilder.skills.secondarySkills)
     },
-    inventory: deepClone(builder.inventory),
-    statuses: deepClone(builder.statuses || []),
-    notes: builder.notes || '',
+    inventory: deepClone(preparedBuilder.inventory),
+    statuses: deepClone(preparedBuilder.statuses || []),
+    notes: preparedBuilder.notes || '',
+    builderSnapshot: deepClone(preparedBuilder),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     history: { undoStack: [], redoStack: [] }
@@ -427,6 +503,18 @@ export function resolveBuilderToCharacter(builder, data) {
 }
 
 export function builderFromCharacter(character, data) {
+  if (character.builderSnapshot) {
+    const snapshot = deepClone(character.builderSnapshot);
+    snapshot.id = character.id;
+    snapshot.progression = deepClone(character.progression || snapshot.progression || { baseHpRoll: rollD6(), levelHpRolls: [] });
+    snapshot.health = deepClone(character.health || snapshot.health);
+    snapshot.inventory = deepClone(character.inventory || snapshot.inventory);
+    snapshot.statuses = deepClone(character.statuses || snapshot.statuses || []);
+    snapshot.notes = character.notes || snapshot.notes || '';
+    ensureBuilderProgression(snapshot);
+    return snapshot;
+  }
+
   const builder = createEmptyBuilder(data);
   builder.id = character.id;
   builder.name = character.name;
@@ -448,11 +536,13 @@ export function builderFromCharacter(character, data) {
   builder.combat.currentInitiative = character.combat?.currentInitiative || '';
   builder.health = deepClone(character.health || builder.health);
   builder.inventory = deepClone(character.inventory || builder.inventory);
+  builder.progression = deepClone(character.progression || builder.progression);
   builder.statuses = deepClone(character.statuses || []);
   builder.notes = character.notes || '';
   builder.skills.scholasticPrograms = deepClone(character.skills?.scholasticPrograms || []);
   builder.skills.secondarySkills = deepClone(character.skills?.secondaryNames || []);
   builder.skills.manualSkills = deepClone(character.skills?.manual || []);
+  ensureBuilderProgression(builder);
   return builder;
 }
 

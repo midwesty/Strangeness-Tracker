@@ -477,9 +477,32 @@ dialog::backdrop { background: rgba(0,0,0,.65); }
 .sheet-hero {
   padding: 12px;
   display: grid;
+  gap: 12px;
+}
+.sheet-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.sheet-hero-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+.sheet-hero-body {
+  display: grid;
   grid-template-columns: 110px minmax(0, 1fr);
   gap: 12px;
   align-items: start;
+}
+.sheet-hero.collapsed {
+  padding-bottom: 10px;
+}
+.sheet-hero.collapsed .sheet-hero-body {
+  display: none;
 }
 .sheet-avatar-card {
   display: grid;
@@ -598,7 +621,7 @@ dialog::backdrop { background: rgba(0,0,0,.65); }
 }
 
 @media (max-width: 720px) {
-  .sheet-hero {
+  .sheet-hero-body {
     grid-template-columns: 82px minmax(0, 1fr);
     gap: 10px;
   }
@@ -617,7 +640,7 @@ dialog::backdrop { background: rgba(0,0,0,.65); }
 }
 
 @media (max-width: 480px) {
-  .sheet-hero {
+  .sheet-hero-body {
     grid-template-columns: 1fr;
   }
   .sheet-avatar-card {
@@ -629,5 +652,14 @@ dialog::backdrop { background: rgba(0,0,0,.65); }
   }
   .sheet-mini-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .sheet-hero-topline {
+    align-items: flex-start;
+  }
+  .sheet-hero-topline .btn {
+    flex: 0 0 auto;
   }
 }
